@@ -57,6 +57,9 @@ namespace CineplexCinemas
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            services.AddDbContext<CineplexCinemasContext>(options =>
+                    options.UseSqlServer(Configuration["Data:CineplexCinemasContext:ConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
