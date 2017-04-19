@@ -54,7 +54,7 @@ TestResults/
 ######################
 *.log
 *.sqlite
-appsettings.json
+src\CineplexCinemas\appsettings.json
 # OS generated files #
 ######################
 .DS_Store?
