@@ -13,16 +13,23 @@ namespace CineplexCinemas.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Cinemas()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Your Cinemas page.";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Events()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Your Events page.";
+
+            return View();
+        }
+
+        public IActionResult Movies()
+        {
+            ViewData["Message"] = "Your Movies page.";
 
             return View();
         }

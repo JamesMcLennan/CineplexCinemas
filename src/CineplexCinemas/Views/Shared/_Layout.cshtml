@@ -3,11 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CineplexCinemas</title>
+    <title>Cineplex Cinema</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/SharedLayout.css" />
+
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -18,7 +22,11 @@
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div id="Title">
+        <h1>Cineplex</h1> 
+        <h4>Cinema</h4>
+    </div>
+    <div class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,10 +35,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">CineplexCinemas</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav nav-pills pull-left">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
@@ -41,10 +48,48 @@
         </div>
     </div>
     <div class="container body-content">
+        <hr class="style" />
         @RenderBody()
-        <hr />
+        <hr class="style" />
         <footer>
-            <p>&copy; 2017 - CineplexCinemas</p>
+            <div id="footerLinks">
+                <div class="col-md-3">
+                    <h4>Cinema Links 1</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 1</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 2</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 3</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Cinema Links 2</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 1</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 2</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 3</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Cinema Links 3</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 1</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 2</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 3</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Cinema Links 4</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 1</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 2</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 3</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <div id="baseFooter">
+                <p class="pull-left">James McLennan, s3543182 | Minyoung Cho, s3569912</p> <p class="pull-right">&copy; 2017 - CineplexCinemas</p>
+            </div>
         </footer>
     </div>
 
