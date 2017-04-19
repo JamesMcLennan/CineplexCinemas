@@ -1,4 +1,8 @@
-﻿.nav {
+﻿html, body {
+    background-color: #191919;
+}
+
+.nav {
     margin: 10px;
     color: white;
 }
