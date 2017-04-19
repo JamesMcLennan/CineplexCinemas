@@ -1,8 +1,50 @@
-﻿html, body {
-    background-color: #191919;
+﻿/******
+GENERAL SECTION    
+******/
+html, body {
+    background-image: url(/images/footer_lodyas.png);
+    padding-top: 0px;
+    font-family: 'Droid Sans', sans-serif;
+    color: white;
 }
 
+/******
+TITLE SECTION    
+******/
+#Title {
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+    text-align: center;
+    color: red;
+    padding-bottom: 5px;
+}
+
+#Title h4 {
+    padding: 0px;
+    text-decoration: overline;
+}
+
+/******
+NAVBAR SECTION    
+******/
 .nav {
     margin: 10px;
     color: white;
 }
+
+.nav a {
+    color: white;
+    font-size: medium;
+}
+
+.nav a:hover {
+    background-color: black;
+    color: red;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+  background-color: #363636;
+  opacity: 0.2;
+}
+
+
