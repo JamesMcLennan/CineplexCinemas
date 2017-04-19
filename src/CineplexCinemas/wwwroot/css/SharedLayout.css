@@ -8,6 +8,9 @@ html, body {
     color: white;
 }
 
+hr.style {
+	border-top: 3px double #8c8b8b;
+}
 /******
 TITLE SECTION    
 ******/
@@ -44,7 +47,17 @@ NAVBAR SECTION
 
 .nav>li>a:focus, .nav>li>a:hover {
   background-color: #363636;
-  opacity: 0.2;
 }
 
+/******
+FOOTER SECTION    
+******/
+#footerLinks {
+    font-size: 12px;
+}
+
+#baseFooter {
+    font-size: 10px;
+    color: grey;
+}
 
