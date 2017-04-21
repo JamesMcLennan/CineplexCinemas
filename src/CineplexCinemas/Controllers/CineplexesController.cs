@@ -5,27 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Cineplex.Models;
 using CineplexCinemas.Models;
 
 namespace CineplexCinemas.Controllers
 {
-    public class CineplexSitesController : Controller
+    public class CineplexesController : Controller
     {
-        private readonly CineplexCinemasContext _context;
+        private readonly CineplexDatabaseContext _context;
 
-        public CineplexSitesController(CineplexCinemasContext context)
+        public CineplexesController(CineplexDatabaseContext context)
         {
             _context = context;    
         }
 
-        // GET: CineplexSites
+        // GET: Cineplexes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CineplexSite.ToListAsync());
+            return View(await _context.Cineplex.ToListAsync());
         }
 
-        // GET: CineplexSites/Details/5
+        // GET: Cineplexes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,38 +32,38 @@ namespace CineplexCinemas.Controllers
                 return NotFound();
             }
 
-            var cineplexSite = await _context.CineplexSite.SingleOrDefaultAsync(m => m.CineplexId == id);
-            if (cineplexSite == null)
+            var cineplex = await _context.Cineplex.SingleOrDefaultAsync(m => m.CineplexId == id);
+            if (cineplex == null)
             {
                 return NotFound();
             }
 
-            return View(cineplexSite);
+            return View(cineplex);
         }
 
-        // GET: CineplexSites/Create
+        // GET: Cineplexes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: CineplexSites/Create
+        // POST: Cineplexes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CineplexId,ImageUrl,Location,LongDescription,ShortDescription")] CineplexSite cineplexSite)
+        public async Task<IActionResult> Create([Bind("CineplexId,ImageUrl,Location,LongDescription,ShortDescription")] Cineplex cineplex)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cineplexSite);
+                _context.Add(cineplex);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(cineplexSite);
+            return View(cineplex);
         }
 
-        // GET: CineplexSites/Edit/5
+        // GET: Cineplexes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +71,22 @@ namespace CineplexCinemas.Controllers
                 return NotFound();
             }
 
-            var cineplexSite = await _context.CineplexSite.SingleOrDefaultAsync(m => m.CineplexId == id);
-            if (cineplexSite == null)
+            var cineplex = await _context.Cineplex.SingleOrDefaultAsync(m => m.CineplexId == id);
+            if (cineplex == null)
             {
                 return NotFound();
             }
-            return View(cineplexSite);
+            return View(cineplex);
         }
 
-        // POST: CineplexSites/Edit/5
+        // POST: Cineplexes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CineplexId,ImageUrl,Location,LongDescription,ShortDescription")] CineplexSite cineplexSite)
+        public async Task<IActionResult> Edit(int id, [Bind("CineplexId,ImageUrl,Location,LongDescription,ShortDescription")] Cineplex cineplex)
         {
-            if (id != cineplexSite.CineplexId)
+            if (id != cineplex.CineplexId)
             {
                 return NotFound();
             }
@@ -96,12 +95,12 @@ namespace CineplexCinemas.Controllers
             {
                 try
                 {
-                    _context.Update(cineplexSite);
+                    _context.Update(cineplex);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CineplexSiteExists(cineplexSite.CineplexId))
+                    if (!CineplexExists(cineplex.CineplexId))
                     {
                         return NotFound();
                     }
@@ -112,10 +111,10 @@ namespace CineplexCinemas.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(cineplexSite);
+            return View(cineplex);
         }
 
-        // GET: CineplexSites/Delete/5
+        // GET: Cineplexes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,29 +122,29 @@ namespace CineplexCinemas.Controllers
                 return NotFound();
             }
 
-            var cineplexSite = await _context.CineplexSite.SingleOrDefaultAsync(m => m.CineplexId == id);
-            if (cineplexSite == null)
+            var cineplex = await _context.Cineplex.SingleOrDefaultAsync(m => m.CineplexId == id);
+            if (cineplex == null)
             {
                 return NotFound();
             }
 
-            return View(cineplexSite);
+            return View(cineplex);
         }
 
-        // POST: CineplexSites/Delete/5
+        // POST: Cineplexes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cineplexSite = await _context.CineplexSite.SingleOrDefaultAsync(m => m.CineplexId == id);
-            _context.CineplexSite.Remove(cineplexSite);
+            var cineplex = await _context.Cineplex.SingleOrDefaultAsync(m => m.CineplexId == id);
+            _context.Cineplex.Remove(cineplex);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool CineplexSiteExists(int id)
+        private bool CineplexExists(int id)
         {
-            return _context.CineplexSite.Any(e => e.CineplexId == id);
+            return _context.Cineplex.Any(e => e.CineplexId == id);
         }
     }
 }

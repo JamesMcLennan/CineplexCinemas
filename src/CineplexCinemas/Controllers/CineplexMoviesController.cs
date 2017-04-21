@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Cineplex.Models;
 using CineplexCinemas.Models;
 
 namespace CineplexCinemas.Controllers
 {
     public class CineplexMoviesController : Controller
     {
-        private readonly CineplexCinemasContext _context;
+        private readonly CineplexDatabaseContext _context;
 
-        public CineplexMoviesController(CineplexCinemasContext context)
+        public CineplexMoviesController(CineplexDatabaseContext context)
         {
             _context = context;    
         }
@@ -22,8 +21,8 @@ namespace CineplexCinemas.Controllers
         // GET: CineplexMovies
         public async Task<IActionResult> Index()
         {
-            var cineplexCinemasContext = _context.CineplexMovie.Include(c => c.Movie);
-            return View(await cineplexCinemasContext.ToListAsync());
+            var cineplexDatabaseContext = _context.CineplexMovie.Include(c => c.Cineplex).Include(c => c.Movie);
+            return View(await cineplexDatabaseContext.ToListAsync());
         }
 
         // GET: CineplexMovies/Details/5
@@ -46,7 +45,8 @@ namespace CineplexCinemas.Controllers
         // GET: CineplexMovies/Create
         public IActionResult Create()
         {
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "MovieId");
+            ViewData["CineplexId"] = new SelectList(_context.Cineplex, "CineplexId", "Location");
+            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription");
             return View();
         }
 
@@ -63,7 +63,8 @@ namespace CineplexCinemas.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "MovieId", cineplexMovie.MovieId);
+            ViewData["CineplexId"] = new SelectList(_context.Cineplex, "CineplexId", "Location", cineplexMovie.CineplexId);
+            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", cineplexMovie.MovieId);
             return View(cineplexMovie);
         }
 
@@ -80,7 +81,8 @@ namespace CineplexCinemas.Controllers
             {
                 return NotFound();
             }
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "MovieId", cineplexMovie.MovieId);
+            ViewData["CineplexId"] = new SelectList(_context.Cineplex, "CineplexId", "Location", cineplexMovie.CineplexId);
+            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", cineplexMovie.MovieId);
             return View(cineplexMovie);
         }
 
@@ -116,7 +118,8 @@ namespace CineplexCinemas.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "MovieId", cineplexMovie.MovieId);
+            ViewData["CineplexId"] = new SelectList(_context.Cineplex, "CineplexId", "Location", cineplexMovie.CineplexId);
+            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", cineplexMovie.MovieId);
             return View(cineplexMovie);
         }
 

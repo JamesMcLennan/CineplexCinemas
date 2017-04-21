@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Cineplex.Models;
 using CineplexCinemas.Models;
 
 namespace CineplexCinemas.Controllers
 {
     public class EnquiriesController : Controller
     {
-        private readonly CineplexCinemasContext _context;
+        private readonly CineplexDatabaseContext _context;
 
-        public EnquiriesController(CineplexCinemasContext context)
+        public EnquiriesController(CineplexDatabaseContext context)
         {
             _context = context;    
         }

@@ -1,4 +1,4 @@
-@model Cineplex.Models.CineplexMovie
+@model CineplexCinemas.Models.CineplexMovie
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,13 +12,7 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="CineplexId" />
-        <div class="form-group">
-            <label asp-for="MovieId" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="MovieId" class="form-control" asp-items="ViewBag.MovieId"></select>
-                <span asp-validation-for="MovieId" class="text-danger" />
-            </div>
-        </div>
+    <input type="hidden" asp-for="MovieId" />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

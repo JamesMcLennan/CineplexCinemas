@@ -1,4 +1,4 @@
-@model IEnumerable<Cineplex.Models.CineplexSite>
+@model IEnumerable<CineplexCinemas.Models.MovieComingSoon>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,13 +16,13 @@
                 @Html.DisplayNameFor(model => model.ImageUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.LongDescription)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ShortDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th></th>
         </tr>
@@ -34,18 +34,18 @@
                 @Html.DisplayFor(modelItem => item.ImageUrl)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.LongDescription)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ShortDescription)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CineplexId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CineplexId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CineplexId">Delete</a>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MovieComingSoonId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MovieComingSoonId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MovieComingSoonId">Delete</a>
             </td>
         </tr>
 }
