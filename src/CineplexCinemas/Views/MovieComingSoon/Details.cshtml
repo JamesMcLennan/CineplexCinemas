@@ -1,4 +1,4 @@
-@model Cineplex.Models.CineplexSite
+@model CineplexCinemas.Models.MovieComingSoon
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>CineplexSite</h4>
+    <h4>MovieComingSoon</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -15,12 +15,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Location)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.LongDescription)
@@ -34,9 +28,15 @@
         <dd>
             @Html.DisplayFor(model => model.ShortDescription)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CineplexId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.MovieComingSoonId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

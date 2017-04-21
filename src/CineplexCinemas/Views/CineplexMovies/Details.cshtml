@@ -1,4 +1,4 @@
-@model Cineplex.Models.CineplexMovie
+@model CineplexCinemas.Models.CineplexMovie
 
 @{
     ViewData["Title"] = "Details";
@@ -13,6 +13,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CineplexId">Edit</a> |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
 </div>

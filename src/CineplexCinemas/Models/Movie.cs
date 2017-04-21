@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace Cineplex.Models
+namespace CineplexCinemas.Models
 {
     public partial class Movie
     {
@@ -11,7 +10,6 @@ namespace Cineplex.Models
             CineplexMovie = new HashSet<CineplexMovie>();
         }
 
-        [Key]
         public int MovieId { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
