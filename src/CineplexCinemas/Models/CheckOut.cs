@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CineplexCinemas.Models
 {
-    public class Booking
+    public class CheckOut
     {
         [RegularExpression("^([a-zA-z,.-]+)$")Required(ErrorMessage = "Invalid Name")]
         public string Firstname { get; set; }

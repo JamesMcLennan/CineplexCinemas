@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CineplexCinemas.Controllers
 {
-    public class BookingController : Controller
+    public class CheckOutController : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()
