@@ -22,7 +22,7 @@ namespace CineplexCinemas.Controllers
 
         public IActionResult Events()
         {
-            ViewData["Message"] = "Your Events page.";
+            ViewData["Message"] = "Private Hire";
 
             return View();
         }
