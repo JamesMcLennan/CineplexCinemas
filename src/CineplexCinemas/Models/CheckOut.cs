@@ -8,7 +8,7 @@ namespace CineplexCinemas.Models
 {
     public class CheckOut
     {
-        [RegularExpression("^([a-zA-z,.-]+)$")Required(ErrorMessage = "Invalid Name")]
+        [RegularExpression("^([a-zA-z ,.-]+)$")Required(ErrorMessage = "Invalid Name")]
         public string FullName { get; set; }
 
         [RegularExpression("^([a-z0-9_.-]+[@]{1}[a-z0-9]{1,15}[.]{1}[a-z]{1,5}[.]{0,1}[a-z]{0,5}[.]{0,1}[a-z]{0,5})$")Required(ErrorMessage = "Invalid Email")]
