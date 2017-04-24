@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using CineplexCinemas.Data;
 using CineplexCinemas.Models;
 using CineplexCinemas.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CineplexCinemas
 {
@@ -52,7 +53,11 @@ namespace CineplexCinemas
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.SslPort = 44352;
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -88,6 +93,11 @@ namespace CineplexCinemas
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
+            app.UseGoogleAuthentication(new GoogleOptions()
+            {
+                ClientId = Configuration["Authentication:Google:ClientId"],
+                ClientSecret = Configuration["Authentication:Google:ClientSecret"]
+            });
 
             app.UseMvc(routes =>
             {
