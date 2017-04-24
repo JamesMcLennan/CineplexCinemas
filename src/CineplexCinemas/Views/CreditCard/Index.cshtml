@@ -5,46 +5,85 @@
 
 <h2>Credit Card Process</h2>
 
-<body>
+<script src="~/js/card.js"></script>
+<script src="~/js/cardexpiry.js"></script>
+<div class='card-wrapper'></div><br />
 
-    <div class="card-wrapper"></div>
-    <script src="~/lib/jquery/dist/jq.card.js"></script>
-    <form>
-        <input type="text" name="number" />
-        <input type="text" name="first-name" />
-        <input type="text" name="last-name" />
-        <input type="text" name="expiry" />
-        <input type="text" name="cvc" />
-    </form>
-    <script>
-        $(document).ready(function () {
-            $('form').card({
-                container: '.card-wrapper',
-            });
-        })
-    </script>
+<form asp-controller="Movies" asp-action="Index">
 
-</body>
+    <div class="form-horizontal">
+        <h4>Credit Card Details</h4>
+        <hr />
+
+        
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label name="number" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input name="number" class="form-control" />
+                <span name="number" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label name="first-name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input name="first-name" class="form-control" />
+                <span name="first-name" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label name="last-name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input name="last-name" class="form-control" />
+                <span name="last-name" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label name="expiry" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input name="expiry" class="form-control" />
+                <span name="expiry" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label name="cvc" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input name="cvc" class="form-control" />
+                <span name="cvc" class="text-danger" />
+            </div>
+        </div>
 
 
-    @*<div class='card-wrapper'></div>
-    <script src="~/js/card.js"></script>
-    <form>
-        <input type="text" name="number">
-        <input type="text" name="first-name" />
-        <input type="text" name="last-name" />
-        <input type="text" name="expiry" />
-        <input type="text" name="cvc" />
-    </form>
-    <script>
-var card = new Card({
-    form: 'form',
-    container: '.card-wrapper',
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
 
-    formSelectors: {
-        nameInput: 'input[name="first-name"], input[name="last-name"]'
-    }
-});
-    </script>*@
+<script>
+    var card = new Card({
+        form: 'form',
+        container: '.card-wrapper',
+
+        formSelectors: {
+            nameInput: 'input[name="first-name"], input[name="last-name"]'
+        }
+    });
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
 
 
