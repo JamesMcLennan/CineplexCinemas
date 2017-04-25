@@ -1433,6 +1433,10 @@ var card =
 	            prefix = (new Date).getFullYear();
 	            year = prefix + year;
 	        }
+	        //if ((month != null ? month.length : void 0) === 1 && /^\d+$/.test(month))
+	        //{
+            //    month
+	        //}
 	        month = parseInt(month, 10);
 	        year = parseInt(year, 10);
 	        return {
@@ -1463,16 +1467,17 @@ var card =
 	          var expiryMonth = month;
 
 	          // if current year is greater than expiry year, don't submit
-	          if (crntYear > expiryYear
-                  || (expiryYear == crntYear
-                  && (expiryMonth < crntMonth
-                  || expiryMonth > 12)))
+	          if (crntYear > expiryYear)
 	          {
 	              alert("Your credit card is already expired.");
 	              return false;
 	          }
-
-	              // If valid, submit
+	          else if(crntYear <= expiryYear && (expiryMonth < crntMonth || expiryMonth > 12))
+	          {
+	              alert("Invalid month value is typed.")
+	              return false;
+	          }
+	          // If valid, submit
 	          else
 	          {
 	              expiry = new Date(year, month);
