@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CineplexCinemas.Models
 {
@@ -7,6 +8,7 @@ namespace CineplexCinemas.Models
     {
         public int EnquiryId { get; set; }
         public string Email { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Message { get; set; }
     }
 }
