@@ -88,3 +88,9 @@ EVENTS SECTION
      color: red;
 }
 
+/******
+Enquiries SECTION    
+******/
+.contactForm {
+    text-align:left;
+}
