@@ -1429,6 +1429,11 @@ var card =
 	          prefix = prefix.toString().slice(0, 2);
 	          year = prefix + year;
 	        }
+	        else if ((year != null ? year.length : void 0) === 1 && /^\d+$/.test(year))
+	        {
+	            prefix = (new Date).getFullYear();
+	            year = prefix + year;
+	        }
 	        month = parseInt(month, 10);
 	        year = parseInt(year, 10);
 	        return {
@@ -1453,62 +1458,63 @@ var card =
 	          // Get current month and year
 	          var date = new Date();
 	          var crntMonth = date.getMonth() + 1;
-	          var crntYear = date.getFullYear() - 2000;
-	          if (crntMonth.length < 2) { crntMonth = "0" + crntMonth; }
-
+	          var crntYear = date.getFullYear();// - 2000;
+              
 	          // Get month and year values from the user
-	          var expiryYear = year;
+	          var expiryYear = year;        
 	          var expiryMonth = month;
 
 	          // if current year is greater than expiry year, don't submit
-	          if (crntYear > expiryYear) {
+	          if (crntYear > expiryYear
+                  || (expiryYear == crntYear
+                  && (expiryMonth < crntMonth
+                  || expiryMonth > 12)))
+	          {
 	              alert("Your credit card is already expired.");
 	              return false;
 	          }
-	              // if expiry year is equal to current year and expiry month is less than current month or greater than 12, don't submit
-	          else if (expiryYear == crntYear && (expiryMonth < crntMonth || expiryMonth > 12)) {
-	              alert("Your credit card is already expired.");
-	              return false;
-	          }
-	              // If valid, submit
-	          else {
+
+	          // If valid, submit
+	          else
+	          {
 	              expiry = new Date(year, month);
 	              expiry.setMonth(expiryMonth);
 	              expiry.setYear(expiryYear);
 	              return expiry;
 	          }
-	        //var currentTime, expiry, prefix, ref, ref1;
-	        //if (typeof month === 'object' && 'month' in month) {
-	        //  ref = month, month = ref.month, year = ref.year;
-	        //} else if (typeof month === 'string' && indexOf.call(month, '/') >= 0) {
-	        //  ref1 = Payment.fns.cardExpiryVal(month), month = ref1.month, year = ref1.year;
-	        //}
-	        //if (!(month && year)) {
-	        //  return false;
-	        //}
-	        //month = QJ.trim(month);
-	        //year = QJ.trim(year);
-	        //if (!/^\d+$/.test(month)) {
-	        //  return false;
-	        //}
-	        //if (!/^\d+$/.test(year)) {
-	        //  return false;
-	        //}
-	        //month = parseInt(month, 10);
-	        //if (!(month && month <= 12)) {
-	        //  return false;
-	        //}
-	        //if (year.length === 2) {
-	        //  prefix = (new Date).getFullYear();
-	        //  prefix = prefix.toString().slice(0, 2);
-	        //  year = prefix + year;
-	        //}
-	        //expiry = new Date(year, month);
-	        //currentTime = new Date;
-	        //expiry.setMonth(expiry.getMonth() - 1);
-	        //expiry.setMonth(expiry.getMonth() + 1, 1);
-	        //return expiry > currentTime;
 	      },
+	      //  var currentTime, expiry, prefix, ref, ref1;
+	      //  if (typeof month === 'object' && 'month' in month) {
+	      //    ref = month, month = ref.month, year = ref.year;
+	      //  } else if (typeof month === 'string' && indexOf.call(month, '/') >= 0) {
+	      //    ref1 = Payment.fns.cardExpiryVal(month), month = ref1.month, year = ref1.year;
+	      //  }
+	      //  if (!(month && year)) {
+	      //    return false;
+	      //  }
+	      //  month = QJ.trim(month);
+	      //  year = QJ.trim(year);
+	      //  if (!/^\d+$/.test(month)) {
+	      //    return false;
+	      //  }
+	      //  if (!/^\d+$/.test(year)) {
+	      //    return false;
+	      //  }
+	      //  month = parseInt(month, 10);
+	      //  if (!(month && month <= 12)) {
+	      //    return false;
+	      //  }
+	      //  if (year.length === 2) {
+	      //    prefix = (new Date).getFullYear();
+	      //    prefix = prefix.toString().slice(0, 2);
+	      //    year = prefix + year;
+	      //  }
+	      //  expiry = new Date(year, month);
+	      //  currentTime = new Date;
+	      //  expiry.setMonth(expiry.getMonth() - 1);
+	      //  expiry.setMonth(expiry.getMonth() + 1, 1);
+	      //  return expiry > currentTime;
+	      //},
 	      validateCardCVC: function(cvc, type) {
 	        var ref, ref1;
 	        cvc = QJ.trim(cvc);
