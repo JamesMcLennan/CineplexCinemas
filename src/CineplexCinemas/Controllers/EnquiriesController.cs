@@ -24,6 +24,18 @@ namespace CineplexCinemas.Controllers
             return View(await _context.Enquiry.ToListAsync());
         }
 
+        // GET: Events
+        public IActionResult Events()
+        {
+            return View();
+        }
+
+        // GET: Success Message
+        public IActionResult Success()
+        {
+            return View();
+        }
+
         // GET: Enquiries/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -40,13 +52,7 @@ namespace CineplexCinemas.Controllers
 
             return View(enquiry);
         }
-
-        // GET: Enquiries/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
+        
         // POST: Enquiries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -58,7 +64,7 @@ namespace CineplexCinemas.Controllers
             {
                 _context.Add(enquiry);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Success");
             }
             return View(enquiry);
         }
