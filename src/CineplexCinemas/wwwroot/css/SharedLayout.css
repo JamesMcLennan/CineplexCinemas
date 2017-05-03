@@ -11,6 +11,27 @@ html, body {
 hr.style {
 	border-top: 3px double #8c8b8b;
 }
+
+.button {
+    background-color: #363636;
+	border: 2px solid #2b2b2b;
+	border-radius: 8px;
+	color: white;
+	padding: 10px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #4a4a4a;
+	color: white;
+    text-decoration:none;
+}
 /******
 TITLE SECTION    
 ******/
@@ -60,4 +81,51 @@ FOOTER SECTION
     font-size: 10px;
     color: grey;
 }
+
+/******
+EVENTS SECTION    
+******/
+#events {
+    text-align: center;
+}
+
+.panel {
+    background-color: #37393e;
+    border-color: #37393e;
+}
+
+#events p {
+    padding-top: 10px;
+    display: inline-block;
+    width: 75%;
+}
+
+#events img {
+    border-radius: 5px;
+}
+
+#events h1 {
+     font-family: 'Lobster', cursive;
+     color: red;
+}
+
+/******
+Enquiries SECTION    
+******/
+.contactForm {
+    text-align:left;
+}
+
+textarea {
+    resize:none;
+}
+
+/******
+    Enquiries SUCCESS
+******/
+
+#returnHome {
+    padding-bottom:10px;
+}
+
 

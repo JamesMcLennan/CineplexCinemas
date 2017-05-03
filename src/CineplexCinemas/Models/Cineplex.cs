@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace Cineplex.Models
+namespace CineplexCinemas.Models
 {
-    public partial class CineplexSite
+    public partial class Cineplex
     {
-        public CineplexSite()
+        public Cineplex()
         {
             CineplexMovie = new HashSet<CineplexMovie>();
         }
 
-        [Key]
         public int CineplexId { get; set; }
         public string Location { get; set; }
         public string ShortDescription { get; set; }

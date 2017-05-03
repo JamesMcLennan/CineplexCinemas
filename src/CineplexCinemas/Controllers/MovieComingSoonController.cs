@@ -5,27 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Cineplex.Models;
 using CineplexCinemas.Models;
 
 namespace CineplexCinemas.Controllers
 {
-    public class MovieComingSoonsController : Controller
+    public class MovieComingSoonController : Controller
     {
-        private readonly CineplexCinemasContext _context;
+        private readonly CineplexDatabaseContext _context;
 
-        public MovieComingSoonsController(CineplexCinemasContext context)
+        public MovieComingSoonController(CineplexDatabaseContext context)
         {
             _context = context;    
         }
 
-        // GET: MovieComingSoons
+        // GET: MovieComingSoon
         public async Task<IActionResult> Index()
         {
             return View(await _context.MovieComingSoon.ToListAsync());
         }
 
-        // GET: MovieComingSoons/Details/5
+        // GET: MovieComingSoon/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,13 +41,13 @@ namespace CineplexCinemas.Controllers
             return View(movieComingSoon);
         }
 
-        // GET: MovieComingSoons/Create
+        // GET: MovieComingSoon/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: MovieComingSoons/Create
+        // POST: MovieComingSoon/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -64,7 +63,7 @@ namespace CineplexCinemas.Controllers
             return View(movieComingSoon);
         }
 
-        // GET: MovieComingSoons/Edit/5
+        // GET: MovieComingSoon/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,7 +79,7 @@ namespace CineplexCinemas.Controllers
             return View(movieComingSoon);
         }
 
-        // POST: MovieComingSoons/Edit/5
+        // POST: MovieComingSoon/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -115,7 +114,7 @@ namespace CineplexCinemas.Controllers
             return View(movieComingSoon);
         }
 
-        // GET: MovieComingSoons/Delete/5
+        // GET: MovieComingSoon/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,7 +131,7 @@ namespace CineplexCinemas.Controllers
             return View(movieComingSoon);
         }
 
-        // POST: MovieComingSoons/Delete/5
+        // POST: MovieComingSoon/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
