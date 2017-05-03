@@ -120,12 +120,19 @@ textarea {
     resize:none;
 }
 
-/******
-    Enquiries SUCCESS
-******/
-
 #returnHome {
     padding-bottom:10px;
 }
 
+/*****
+Cinemas SECTION
+*****/
+#Cinemas {
+    text-align: center;
+}
+
+#Cinemas h2 {
+    font-family: 'Lobster', cursive;
+    color: red;
+}
 
