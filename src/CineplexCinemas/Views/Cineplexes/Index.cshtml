@@ -6,7 +6,7 @@
 <div id="Cinemas">
     <h2>@ViewData["Title"]</h2>
 
-    <table class="table">
+    <table class="table panel panel-default">
         <tbody>
     @foreach (var item in Model) {
             <tr>
@@ -14,11 +14,9 @@
                     @Html.DisplayFor(modelItem => item.Location)
                     <img src="@Url.Content(@item.ImageUrl)" class="img-responsive" />
                 </td>
-                <td class="col-lg-8">
+                <td class="col-lg-4">
                     @Html.DisplayFor(modelItem => item.ShortDescription)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.CineplexId">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.CineplexId"><br />Click here for more details!</a>
                 </td>
             </tr>
     }
