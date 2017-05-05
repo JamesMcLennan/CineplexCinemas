@@ -19,6 +19,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @item.Session.SessionTime
+                @item.Movie.Title
+            </td>
+            <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })

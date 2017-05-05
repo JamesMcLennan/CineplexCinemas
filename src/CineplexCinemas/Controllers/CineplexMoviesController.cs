@@ -21,7 +21,7 @@ namespace CineplexCinemas.Controllers
         // GET: CineplexMovies
         public async Task<IActionResult> Index()
         {
-            var cineplexDatabaseContext = _context.CineplexMovie.Include(c => c.Cineplex).Include(c => c.Movie);
+            var cineplexDatabaseContext = _context.CineplexMovie.Include(c => c.Cineplex).Include(c => c.Movie).Include(c => c.Session);
             return View(await cineplexDatabaseContext.ToListAsync());
         }
 
@@ -150,7 +150,7 @@ namespace CineplexCinemas.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
+        
         private bool CineplexMovieExists(int id)
         {
             return _context.CineplexMovie.Any(e => e.CineplexId == id);

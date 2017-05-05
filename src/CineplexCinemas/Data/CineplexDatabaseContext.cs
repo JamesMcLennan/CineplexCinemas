@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using CineplexCinemas.Models;
 
 namespace CineplexCinemas.Models
 {
@@ -89,5 +90,6 @@ namespace CineplexCinemas.Models
         public virtual DbSet<Enquiry> Enquiry { get; set; }
         public virtual DbSet<Movie> Movie { get; set; }
         public virtual DbSet<MovieComingSoon> MovieComingSoon { get; set; }
+        public DbSet<Session> Session { get; set; }
     }
 }
