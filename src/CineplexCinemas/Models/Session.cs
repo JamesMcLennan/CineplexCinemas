@@ -12,5 +12,6 @@ namespace CineplexCinemas.Models
         public DateTime SessionTime { get; set; }
         public int SeatsAvailable { get; set; }
         public int SeatsTotal { get; set; }
+        public Movie film { get; set; }
     }
 }
