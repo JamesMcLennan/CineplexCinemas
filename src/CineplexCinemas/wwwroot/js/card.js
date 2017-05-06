@@ -1433,10 +1433,7 @@ var card =
 	            prefix = (new Date).getFullYear();
 	            year = prefix + year;
 	        }
-	        //if ((month != null ? month.length : void 0) === 1 && /^\d+$/.test(month))
-	        //{
-            //    month
-	        //}
+
 	        month = parseInt(month, 10);
 	        year = parseInt(year, 10);
 	        return {

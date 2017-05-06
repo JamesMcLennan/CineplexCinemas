@@ -20,6 +20,7 @@ namespace CineplexCinemas.Models
         [Required(ErrorMessage = "Invalid last name.")]
         public string LastName { get; set; }
 
+        //[RegularExpression("^([0-9]{4})$")]
         [Required(ErrorMessage = "Invalid expiry date.")]
         public string ExpiryDate { get; set; }
 
