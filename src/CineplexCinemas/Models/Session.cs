@@ -8,8 +8,7 @@ namespace CineplexCinemas.Models
     public partial class Session
     {
         public int SessionId { get; set; }
-        public DateTime SessionDate { get; set; }
-        public DateTime SessionTime { get; set; }
+        public DateTime SessionDateTime { get; set; }
         public int SeatsAvailable { get; set; }
         public int SeatsTotal { get; set; }
         public Movie film { get; set; }

@@ -19,10 +19,7 @@
                 @Html.DisplayNameFor(model => model.SeatsTotal)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SessionDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SessionTime)
+                @Html.DisplayNameFor(model => model.SessionDateTime)
             </th>
             <th></th>
         </tr>
@@ -37,10 +34,7 @@
                 @Html.DisplayFor(modelItem => item.SeatsTotal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SessionDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SessionTime)
+                @Html.DisplayFor(modelItem => item.SessionDateTime)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SessionId">Edit</a> |

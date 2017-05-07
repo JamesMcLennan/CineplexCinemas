@@ -52,7 +52,7 @@ namespace CineplexCinemas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SessionId,SeatsAvailable,SeatsTotal,SessionDate,SessionTime")] Session session)
+        public async Task<IActionResult> Create([Bind("SessionId,SeatsAvailable,SeatsTotal,SessionDateTime")] Session session)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace CineplexCinemas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SessionId,SeatsAvailable,SeatsTotal,SessionDate,SessionTime")] Session session)
+        public async Task<IActionResult> Edit(int id, [Bind("SessionId,SeatsAvailable,SeatsTotal,SessionDateTime")] Session session)
         {
             if (id != session.SessionId)
             {
