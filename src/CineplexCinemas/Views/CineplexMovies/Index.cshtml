@@ -14,73 +14,93 @@
 <p>
    
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        if (!byMovie && !byCinema)
-        {
-            if (!item.Cineplex.Location.Equals(previousCineplex))
+<div class="col-md-2">
+    St Kilda<br />
+    Fitzroy<br />
+    Melbourne CBD<br />
+    Sunshine<br />
+    Lilydale<br />
+</div>
+<div class="col-md-10">
+    <table class="table">
+        <tbody>
+            @if(ViewContext.RouteData.Values["cinemaName"].Equals(null))
             {
+                ViewContext.RouteData.Values["cinemaName"] = "None";
+            }
+            @if(ViewContext.RouteData.Values["cinemaName"].Equals("None"))
+            {
+                foreach (var item in Model)
+                {
+                    if (!byMovie && !byCinema)
+                    {
+                        if (!item.Cineplex.Location.Equals(previousCineplex))
+                        {
 
-                previousCineplex = item.Cineplex.Location;
-                <tr>
-                    <td>
-                        <b>@previousCineplex</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Movie: @item.Session.film.Title<br />
-                        Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
-                        Time: @item.Session.SessionDateTime.TimeOfDay
-                    </td>
-                </tr>
+                            previousCineplex = item.Cineplex.Location;
+                            <tr>
+                                <td>
+                                    <b>@previousCineplex</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Movie: @item.Session.film.Title<br />
+                                    Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
+                                    Time: @item.Session.SessionDateTime.TimeOfDay
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>
+                                    Movie: @item.Session.film.Title<br />
+                                    Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
+                                    Time: @item.Session.SessionDateTime.TimeOfDay
+                                </td>
+                            </tr>
+                        }
+                    }
+                    if (byCinema)
+                    {
+                        if (item.Cineplex.Location.Equals(cinema))
+                        {
+                            <tr>
+                                <td>
+                                    Movie: @item.Session.film.Title<br />
+                                    Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
+                                    Time: @item.Session.SessionDateTime.TimeOfDay
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                    if (byMovie)
+                    {
+                        if (item.Movie.Title.Equals(movie))
+                        {
+                            <tr>
+                                <td>
+                                    Movie: @item.Session.film.Title<br />
+                                    Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
+                                    Time: @item.Session.SessionDateTime.TimeOfDay
+                                    Location: @item.Cineplex.Location
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
             }
             else
             {
                 <tr>
                     <td>
-                        Movie: @item.Session.film.Title<br />
-                        Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
-                        Time: @item.Session.SessionDateTime.TimeOfDay
+                        I rock
                     </td>
                 </tr>
             }
-        }
-        if (byCinema)
-        {
-            if (item.Cineplex.Location.Equals(cinema))
-            {
-                <tr>
-                    <td>
-                        Movie: @item.Session.film.Title<br />
-                        Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
-                        Time: @item.Session.SessionDateTime.TimeOfDay
-                    </td>
-                </tr>
-            }
-        }
-
-        if (byMovie)
-        {
-            if (item.Movie.Title.Equals(movie))
-            {
-                <tr>
-                    <td>
-                        Movie: @item.Session.film.Title<br />
-                        Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
-                        Time: @item.Session.SessionDateTime.TimeOfDay
-                        Location: @item.Cineplex.Location
-                    </td>
-                </tr>
-            }
-        }
-    }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    <a asp-area="" asp-action="Index" asp-route-cinemaName="St Kilda">Home</a>
+</div>

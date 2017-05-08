@@ -155,5 +155,22 @@ namespace CineplexCinemas.Controllers
         {
             return _context.CineplexMovie.Any(e => e.CineplexId == id);
         }
+
+        public IActionResult _SessionTimesPartial(string cinemaName)
+        {
+            var cineplexDatabaseContext = _context.CineplexMovie.Include(c => c.Cineplex).Include(c => c.Movie).Include(c => c.Session);
+            var cineplexList = cineplexDatabaseContext.ToList();
+            lock (cineplexList)
+            {
+                foreach (var item in cineplexList.ToArray())
+                {
+                    if (!item.Cineplex.Location.Equals(cinemaName))
+                    {
+                        cineplexList.Remove(item);
+                    }
+                }
+                return PartialView(cineplexList);
+            }
+        }
     }
 }
