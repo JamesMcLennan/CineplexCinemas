@@ -7,24 +7,13 @@
 
 
 
-@*<script src="~/lib/jquery/dist/jquery.card.js"></script>
-<script>
-    $(document).ready(function () {
-        $('form').card({
-            container: '.card-wrapper',
+@*<script src="~/js/card.js"></script>
 
-            formSelectors: {
-                nameInput: 'input[name="first-name"], input[name="last-name"]'
-            }
-        });
-    })
-</script>*@
+<div class='card-wrapper'></div><br />*@
 
-<script src="~/js/card.js"></script>
+<script src="~/js/cardexpiry.js"></script>
 
-<div class='card-wrapper'></div><br />
-
-<form asp-controller="Movies" asp-action="Index">
+<form asp-controller="Movies" asp-action="Index" onsubmit="return expiryChecker()">
 
     <div class="form-horizontal">
         <h4>Credit Card Details</h4>
@@ -33,41 +22,57 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="form-group">
-            <label asp-for="CardNumber" name="number" class="col-md-2 control-label"></label>
+            <label asp-for="CardNumber" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="CardNumber" name="number" class="form-control" />
+                <input asp-for="CardNumber" class="form-control" />
                 <span asp-validation-for="CardNumber" class="text-danger" />
             </div>
         </div>
 
         <div class="form-group">
-            <label asp-for="FirstName" name="first-name" class="col-md-2 control-label"></label>
+            <label asp-for="FirstName"  class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="FirstName" name="first-name" class="form-control" />
+                <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger" />
             </div>
         </div>
 
         <div class="form-group">
-            <label asp-for="LastName" name="last-name" class="col-md-2 control-label"></label>
+            <label asp-for="LastName"  class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="LastName" name="last-name" class="form-control" />
+                <input asp-for="LastName"  class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger" />
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             <label asp-for="ExpiryDate" name="expiry" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="ExpiryDate"name="expiry" class="form-control" />
                 <span asp-validation-for="ExpiryDate" class="text-danger" />
             </div>
+        </div>*@
+
+        <div class="form-group">
+            <label asp-for="ExpiryMonth" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ExpiryMonth" id="expiryMonth" class="form-control" />
+                <span asp-validation-for="ExpiryMonth" class="text-danger" />
+            </div>
         </div>
 
         <div class="form-group">
-            <label asp-for="CVC" name="cvc" class="col-md-2 control-label"></label>
+            <label asp-for="ExpiryYear"  class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="CVC" name="cvc" class="form-control" />
+                <input asp-for="ExpiryYear" id="expiryYear" class="form-control" />
+                <span asp-validation-for="ExpiryYear" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CVC" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CVC" class="form-control" />
                 <span asp-validation-for="CVC" class="text-danger" />
             </div>
         </div>
@@ -81,7 +86,7 @@
     </div>
 </form>
 
-<script>
+@*<script>
     var card = new Card({
         form: 'form',
         container: '.card-wrapper',
@@ -90,7 +95,7 @@
             nameInput: 'input[name="first-name"], input[name="last-name"]'
         }
     });
-</script>
+</script>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

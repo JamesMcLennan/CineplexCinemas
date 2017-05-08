@@ -1471,7 +1471,7 @@ var card =
 	          }
 	          else if(crntYear <= expiryYear && (expiryMonth < crntMonth || expiryMonth > 12))
 	          {
-	              alert("Invalid month value is typed.")
+	              alert("Invalid month value is typed.");
 	              return false;
 	          }
 	          // If valid, submit
