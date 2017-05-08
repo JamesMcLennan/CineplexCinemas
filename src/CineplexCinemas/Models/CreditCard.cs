@@ -9,23 +9,24 @@ namespace CineplexCinemas.Models
     public class CreditCard
     {
         //[RegularExpression("^([0-9]{14,19})$")]
-        [Required(ErrorMessage = "Invalid number.")]
+        [Required]
+        [CreditCard(ErrorMessage ="Invalid Card Number")]
         public string CardNumber { get; set; }
 
-        [RegularExpression("^([a-zA-z]+)$")]
-        [Required(ErrorMessage = "Invalid first name.")]
+        [RegularExpression("^([a-zA-z]+)$", ErrorMessage = "Invalid first name.")]
+        [Required]
         public string FirstName { get; set; }
 
-        [RegularExpression("^([a-zA-z]+)$")]
-        [Required(ErrorMessage = "Invalid last name.")]
+        [RegularExpression("^([a-zA-z]+)$", ErrorMessage = "Invalid last name.")]
+        [Required]
         public string LastName { get; set; }
 
         //[RegularExpression("^([0-9]{4})$")]
-        [Required(ErrorMessage = "Invalid expiry date.")]
+        [Required]
         public string ExpiryDate { get; set; }
 
-        [RegularExpression("^([0-9]{3})$")]
-        [Required(ErrorMessage = "Invalid CVC number.")]
+        [RegularExpression("^([0-9]{3})$", ErrorMessage = "Invalid CVC number.")]
+        [Required]
         public string CVC { get; set; }
     }
 }
