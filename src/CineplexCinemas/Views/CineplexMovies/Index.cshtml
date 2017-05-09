@@ -24,13 +24,7 @@
 <div class="col-md-10">
     <table class="table">
         <tbody>
-            @if(ViewContext.RouteData.Values["cinemaName"].Equals(null))
-            {
-                ViewContext.RouteData.Values["cinemaName"] = "None";
-            }
-            @if(ViewContext.RouteData.Values["cinemaName"].Equals("None"))
-            {
-                foreach (var item in Model)
+            @foreach (var item in Model)
                 {
                     if (!byMovie && !byCinema)
                     {
@@ -45,9 +39,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Movie: @item.Session.film.Title<br />
+                                    Movie: @item.Session.film.Title<br /> @Html.ActionLink("Movie", "Sessions", new { movieName = item.Movie.Title })
                                     Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
                                     Time: @item.Session.SessionDateTime.TimeOfDay
+                                    @Html.ActionLink("Details", "Sessions", new { cinemaName = item.Cineplex.Location })
                                 </td>
                             </tr>
                         }
@@ -73,34 +68,28 @@
                                     Time: @item.Session.SessionDateTime.TimeOfDay
                                 </td>
                             </tr>
-                        }
                     }
+                }
 
-                    if (byMovie)
+                if (byMovie)
+                {
+                    if (item.Movie.Title.Equals(movie))
                     {
-                        if (item.Movie.Title.Equals(movie))
-                        {
                             <tr>
                                 <td>
                                     Movie: @item.Session.film.Title<br />
                                     Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
                                     Time: @item.Session.SessionDateTime.TimeOfDay
                                     Location: @item.Cineplex.Location
+                                    @Html.ActionLink("Details", "Details", new { id = item.Cineplex.Location })
                                 </td>
                             </tr>
                         }
                     }
                 }
-            }
-            else
-            {
-                <tr>
-                    <td>
-                        I rock
-                    </td>
-                </tr>
-            }
+            
         </tbody>
     </table>
     <a asp-area="" asp-action="Index" asp-route-cinemaName="St Kilda">Home</a>
+
 </div>

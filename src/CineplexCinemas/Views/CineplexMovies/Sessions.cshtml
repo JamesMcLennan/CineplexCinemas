@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var previousCineplex = "None";
+}
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (!item.Cineplex.Location.Equals(previousCineplex))
+            {
+                previousCineplex = item.Cineplex.Location;
+                   <tr>
+                        <td>
+                            <b>@previousCineplex</b>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td>
+                                    Movie: @item.Session.film.Title<br />
+                                    Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
+                                    Time: @item.Session.SessionDateTime.TimeOfDay
+                                </td>
+                            </tr>
+            }
+            else
+            {
+                    <tr>
+                        <td>
+                            Movie: @item.Session.film.Title<br />
+                            Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
+                            Time: @item.Session.SessionDateTime.TimeOfDay
+                        </td>
+                    </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+
+
