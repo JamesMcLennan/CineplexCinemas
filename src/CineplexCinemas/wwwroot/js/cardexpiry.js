@@ -1,4 +1,4 @@
-function expiryChecker(){
+function expiryChecker() {
 	
 	// Get current month and year
 	var date = new Date();

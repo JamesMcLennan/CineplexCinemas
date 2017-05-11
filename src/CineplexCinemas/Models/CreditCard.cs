@@ -8,7 +8,8 @@ namespace CineplexCinemas.Models
 {
     public class CreditCard
     {
-        [RegularExpression("^([0-9]{14,19})$", ErrorMessage = "Invalid card number.")]
+        [RegularExpression("^([0-9]{4}[-]?[0-9]{4}[-]?[0-9]{4}[-]?[0-9]{4})$"
+            , ErrorMessage = "Card number must be 16 digits.")]
         [Required]
         public string CardNumber { get; set; }
 
@@ -32,7 +33,7 @@ namespace CineplexCinemas.Models
         [Required]
         public string ExpiryYear { get; set; }
 
-        [RegularExpression("^([0-9]{3})$", ErrorMessage = "Invalid CVC number.")]
+        [RegularExpression("^([0-9]{3})$", ErrorMessage = "CVC numbers are 3 digits.")]
         [Required]
         public string CVC { get; set; }
     }
