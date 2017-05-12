@@ -133,9 +133,7 @@ namespace CineplexCinemas.Migrations
 
                     b.Property<int>("SeatsTotal");
 
-                    b.Property<DateTime>("SessionDate");
-
-                    b.Property<DateTime>("SessionTime");
+                    b.Property<DateTime>("SessionDateTime");
 
                     b.Property<int?>("filmMovieId");
 
