@@ -5,7 +5,7 @@
     var previousCineplex = "None";
     DateTime DayToDisplay = new DateTime(1996, 05, 10);
 }
-<table class="table">
+<table class="table borderless">
     <tbody>
         @foreach (var item in Model)
         {
@@ -23,7 +23,7 @@
                             <h3>@previousCineplex</h3>
                         </td>
                    </tr>
-                        DayToDisplay = item.Session.SessionDateTime;
+                DayToDisplay = item.Session.SessionDateTime;
                     <tr>
                         <td>
                             <h3>@DayToDisplay.DayOfWeek</h3>
@@ -31,18 +31,19 @@
                     </tr>
                     <tr>
                         <td>
-                             Movie: @item.Session.FilmMovie.Title<br />
-                             Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
-                             Time: @item.Session.SessionDateTime.TimeOfDay
-                                   
+                             @item.Session.FilmMovie.Title 
+                             @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year 
+                             Time: @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
+                             }@time
+
                         </td>
                     </tr>
-            }
-            else
-            {   
-                if (!item.Session.SessionDateTime.DayOfWeek.Equals(DayToDisplay.DayOfWeek))
-                {
-                    DayToDisplay = item.Session.SessionDateTime;
+                                 }
+                                 else
+                                 {
+                                     if (!item.Session.SessionDateTime.DayOfWeek.Equals(DayToDisplay.DayOfWeek))
+                                     {
+                                         DayToDisplay = item.Session.SessionDateTime;
                     <tr>
                         <td>
                             <h3>@DayToDisplay.DayOfWeek</h3>
@@ -52,7 +53,8 @@
                         <td>
                             Movie: @item.Session.FilmMovie.Title<br />
                             Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
-                            Time: @item.Session.SessionDateTime.TimeOfDay
+                            Time: @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
+                            }@time
                         </td>
                     </tr>
                 }
@@ -62,7 +64,8 @@
                         <td>
                             Movie: @item.Session.FilmMovie.Title<br />
                             Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
-                            Time: @item.Session.SessionDateTime.TimeOfDay
+                            Time: @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
+                            }@time
                         </td>
                     </tr>
                 }
