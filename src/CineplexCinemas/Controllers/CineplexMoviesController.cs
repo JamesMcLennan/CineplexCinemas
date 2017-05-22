@@ -179,8 +179,9 @@ namespace CineplexCinemas.Controllers
                         }
                     }
                 }
-                return View(cineplexList);
             }
+            cineplexList = cineplexList.OrderBy(x => x.Session.SessionDateTime).ToList();
+            return View(cineplexList);
         }
     }
 }
