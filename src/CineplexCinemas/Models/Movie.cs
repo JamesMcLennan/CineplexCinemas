@@ -8,6 +8,7 @@ namespace CineplexCinemas.Models
         public Movie()
         {
             CineplexMovie = new HashSet<CineplexMovie>();
+            Session = new HashSet<Session>();
         }
 
         public int MovieId { get; set; }
@@ -18,5 +19,6 @@ namespace CineplexCinemas.Models
         public decimal Price { get; set; }
 
         public virtual ICollection<CineplexMovie> CineplexMovie { get; set; }
+        public virtual ICollection<Session> Session { get; set; }
     }
 }
