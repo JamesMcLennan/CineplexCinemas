@@ -26,34 +26,31 @@
                 DayToDisplay = item.Session.SessionDateTime;
                     <tr>
                         <td>
-                            <h3>@DayToDisplay.DayOfWeek</h3>
+                            <h3>@DayToDisplay.DayOfWeek, @DayToDisplay.Day/@DayToDisplay.Month/@DayToDisplay.Year</h3>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                             @item.Session.FilmMovie.Title 
-                             @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year 
-                             Time: @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
-                             }@time
-
+                            @item.Session.FilmMovie.Title |
+                            @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
+                            }@time
                         </td>
                     </tr>
-                                 }
-                                 else
-                                 {
-                                     if (!item.Session.SessionDateTime.DayOfWeek.Equals(DayToDisplay.DayOfWeek))
-                                     {
-                                         DayToDisplay = item.Session.SessionDateTime;
+               }
+               else
+               {
+               if (!item.Session.SessionDateTime.DayOfWeek.Equals(DayToDisplay.DayOfWeek))
+               {
+                    DayToDisplay = item.Session.SessionDateTime;
                     <tr>
                         <td>
-                            <h3>@DayToDisplay.DayOfWeek</h3>
+                            <h3>@DayToDisplay.DayOfWeek, @DayToDisplay.Day/@DayToDisplay.Month/@DayToDisplay.Year</h3>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Movie: @item.Session.FilmMovie.Title<br />
-                            Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
-                            Time: @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
+                            @item.Session.FilmMovie.Title |
+                            @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
                             }@time
                         </td>
                     </tr>
@@ -62,9 +59,8 @@
                 {
                     <tr>
                         <td>
-                            Movie: @item.Session.FilmMovie.Title<br />
-                            Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
-                            Time: @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
+                            @item.Session.FilmMovie.Title |
+                            @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
                             }@time
                         </td>
                     </tr>
