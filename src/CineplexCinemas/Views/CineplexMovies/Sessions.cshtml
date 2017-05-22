@@ -3,36 +3,69 @@
 *@
 @{
     var previousCineplex = "None";
+    DateTime DayToDisplay = new DateTime(1996, 05, 10);
 }
 <table class="table">
     <tbody>
         @foreach (var item in Model)
         {
+            DayToDisplay = item.Session.SessionDateTime;
+            break;
+        }
+        @foreach (var item in Model)
+        {
             if (!item.Cineplex.Location.Equals(previousCineplex))
             {
                 previousCineplex = item.Cineplex.Location;
+
                    <tr>
                         <td>
-                            <b>@previousCineplex</b>
+                            <h3>@previousCineplex</h3>
                         </td>
-                    </tr>
-                            <tr>
-                                <td>
-                                    Movie: @item.Session.film.Title<br />
-                                    Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
-                                    Time: @item.Session.SessionDateTime.TimeOfDay
-                                </td>
-                            </tr>
-            }
-            else
-            {
+                   </tr>
+                        DayToDisplay = item.Session.SessionDateTime;
                     <tr>
                         <td>
-                            Movie: @item.Session.film.Title<br />
+                            <h3>@DayToDisplay.DayOfWeek</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                             Movie: @item.Session.FilmMovie.Title<br />
+                             Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
+                             Time: @item.Session.SessionDateTime.TimeOfDay
+                                   
+                        </td>
+                    </tr>
+            }
+            else
+            {   
+                if (!item.Session.SessionDateTime.DayOfWeek.Equals(DayToDisplay.DayOfWeek))
+                {
+                    DayToDisplay = item.Session.SessionDateTime;
+                    <tr>
+                        <td>
+                            <h3>@DayToDisplay.DayOfWeek</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Movie: @item.Session.FilmMovie.Title<br />
                             Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
                             Time: @item.Session.SessionDateTime.TimeOfDay
                         </td>
                     </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            Movie: @item.Session.FilmMovie.Title<br />
+                            Day: @item.Session.SessionDateTime.DayOfWeek @item.Session.SessionDateTime.Day/@item.Session.SessionDateTime.Month/@item.Session.SessionDateTime.Year<br />
+                            Time: @item.Session.SessionDateTime.TimeOfDay
+                        </td>
+                    </tr>
+                }
             }
         }
 
