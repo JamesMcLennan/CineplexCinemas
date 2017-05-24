@@ -12,6 +12,10 @@ namespace CineplexCinemas.Controllers
     public class BookingsController : Controller
     {
         private readonly CineplexDatabaseContext _context;
+        private Cineplex cinema;
+        private Movie film;
+        private Session session;
+
 
         public BookingsController(CineplexDatabaseContext context)
         {
@@ -145,6 +149,26 @@ namespace CineplexCinemas.Controllers
         private bool BookingExists(int id)
         {
             return _context.Booking.Any(e => e.BookingId == id);
+        }
+
+        public IActionResult sessionDetails(int cineplexId, int movieId, int sessionId)
+        {
+
+            var cinemaList = _context.Cineplex.ToList();
+            var movieList = _context.Movie.ToList();
+            var sessionList = _context.Session.ToList();
+            cinema = cinemaList.Find(e => e.CineplexId == cineplexId);
+            film = movieList.Find(e => e.MovieId == movieId);
+            session = sessionList.Find(e => e.SessionId == sessionId);
+
+            if (cinema != null && film != null && session != null)
+            {
+                ViewData["Location"] = cinema.Location;
+                ViewData["Film"] = film.Title;
+                ViewData["SessionTime"] = session.SessionDateTime.TimeOfDay.ToString();
+                ViewData["SessionDate"] = session.SessionDateTime.Day + "/" + session.SessionDateTime.Month + "/" + session.SessionDateTime.Year;
+            }
+            return View();
         }
     }
 }
