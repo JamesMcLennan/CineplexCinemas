@@ -8,9 +8,10 @@ using CineplexCinemas.Models;
 namespace CineplexCinemas.Migrations
 {
     [DbContext(typeof(CineplexDatabaseContext))]
-    partial class CineplexDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20170523231620_updateBooking2")]
+    partial class updateBooking2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")

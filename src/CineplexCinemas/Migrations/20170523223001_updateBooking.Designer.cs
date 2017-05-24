@@ -8,9 +8,10 @@ using CineplexCinemas.Models;
 namespace CineplexCinemas.Migrations
 {
     [DbContext(typeof(CineplexDatabaseContext))]
-    partial class CineplexDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20170523223001_updateBooking")]
+    partial class updateBooking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -21,13 +22,21 @@ namespace CineplexCinemas.Migrations
                     b.Property<int>("BookingId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("MovieId");
+
                     b.Property<int?>("SessionDetailsCineplexId");
 
                     b.Property<int?>("SessionDetailsMovieId");
 
                     b.Property<int?>("SessionDetailsSessionId");
 
+                    b.Property<int>("SessionId");
+
                     b.HasKey("BookingId");
+
+                    b.HasIndex("MovieId");
+
+                    b.HasIndex("SessionId");
 
                     b.HasIndex("SessionDetailsCineplexId", "SessionDetailsMovieId", "SessionDetailsSessionId");
 
@@ -166,6 +175,16 @@ namespace CineplexCinemas.Migrations
 
             modelBuilder.Entity("CineplexCinemas.Models.Booking", b =>
                 {
+                    b.HasOne("CineplexCinemas.Models.Movie", "Movie")
+                        .WithMany()
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CineplexCinemas.Models.Session", "Session")
+                        .WithMany()
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("CineplexCinemas.Models.CineplexMovie", "SessionDetails")
                         .WithMany()
                         .HasForeignKey("SessionDetailsCineplexId", "SessionDetailsMovieId", "SessionDetailsSessionId");

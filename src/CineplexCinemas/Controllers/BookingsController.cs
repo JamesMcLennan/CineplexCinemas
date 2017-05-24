@@ -21,8 +21,7 @@ namespace CineplexCinemas.Controllers
         // GET: Bookings
         public async Task<IActionResult> Index()
         {
-            var cineplexDatabaseContext = _context.Booking.Include(b => b.Movie).Include(b => b.Session);
-            return View(await cineplexDatabaseContext.ToListAsync());
+            return View(await _context.Booking.ToListAsync());
         }
 
         // GET: Bookings/Details/5
@@ -45,8 +44,6 @@ namespace CineplexCinemas.Controllers
         // GET: Bookings/Create
         public IActionResult Create()
         {
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription");
-            ViewData["SessionId"] = new SelectList(_context.Session, "SessionId", "SessionId");
             return View();
         }
 
@@ -55,7 +52,7 @@ namespace CineplexCinemas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BookingId,MovieId,SessionId")] Booking booking)
+        public async Task<IActionResult> Create([Bind("BookingId")] Booking booking)
         {
             if (ModelState.IsValid)
             {
@@ -63,8 +60,6 @@ namespace CineplexCinemas.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", booking.MovieId);
-            ViewData["SessionId"] = new SelectList(_context.Session, "SessionId", "SessionId", booking.SessionId);
             return View(booking);
         }
 
@@ -81,8 +76,6 @@ namespace CineplexCinemas.Controllers
             {
                 return NotFound();
             }
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", booking.MovieId);
-            ViewData["SessionId"] = new SelectList(_context.Session, "SessionId", "SessionId", booking.SessionId);
             return View(booking);
         }
 
@@ -91,7 +84,7 @@ namespace CineplexCinemas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BookingId,MovieId,SessionId")] Booking booking)
+        public async Task<IActionResult> Edit(int id, [Bind("BookingId")] Booking booking)
         {
             if (id != booking.BookingId)
             {
@@ -118,8 +111,6 @@ namespace CineplexCinemas.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", booking.MovieId);
-            ViewData["SessionId"] = new SelectList(_context.Session, "SessionId", "SessionId", booking.SessionId);
             return View(booking);
         }
 
