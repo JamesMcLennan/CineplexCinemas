@@ -58,6 +58,8 @@ namespace CineplexCinemas
                 options.SslPort = 44352;
                 options.Filters.Add(new RequireHttpsAttribute());
             });
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -91,6 +93,8 @@ namespace CineplexCinemas
             app.UseStaticFiles();
 
             app.UseIdentity();
+
+            app.UseSession();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
             app.UseGoogleAuthentication(new GoogleOptions()
