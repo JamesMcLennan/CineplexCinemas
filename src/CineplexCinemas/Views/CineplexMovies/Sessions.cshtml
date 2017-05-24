@@ -34,6 +34,8 @@
                             @item.Session.FilmMovie.Title |
                             @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
                             }@time
+
+                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId })<br />
                         </td>
                     </tr>
                }
@@ -64,6 +66,8 @@
                             @item.Session.FilmMovie.Title |
                             @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
                             }@time
+
+                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId })<br />
                         </td>
                     </tr>
                 }
