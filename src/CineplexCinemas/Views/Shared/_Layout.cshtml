@@ -101,6 +101,30 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script>
+            function changeNumber() {
+                var ticketOptionAdult = document.getElementById('numberOfAdults');
+                var ticketOptionConc = document.getElementById('numberOfConc');
+
+                var numberAdults = parseInt(ticketOptionAdult.options[ticketOptionAdult.selectedIndex].value);
+                var numberConc = parseInt(ticketOptionConc.options[ticketOptionConc.selectedIndex].value);
+                var totalNumberTickets = parseInt(numberAdults + numberConc);
+
+                if (totalNumberTickets <= 5)
+                {
+                    var totalAdult = numberAdults * 45;
+                    var totalConc = numberConc * 20;
+
+                    document.getElementById('total').innerHTML = "Total Price: Adults: $" + totalAdult + ".00, Concession's: $" + totalConc + ".00";
+
+                }
+                else
+                {
+                    document.getElementById('total').innerHTML = "You cannot purchase more than 5 tickets per session!";
+                }
+                
+            }
+        </script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"

@@ -7,43 +7,51 @@
 }
 <h1>Booking</h1>
 <div class="col-md-12">
-    <h3>Select Tickets</h3>
-    <table class="ticketDisplay">
-        <tbody>
-            <tr>
-                <td>
-                    <p>Adult</p>
-                </td>
-                <td>
-                    <p>$45.00</p>
-                </td>
-                <td>
-                    @Html.DropDownListFor(m => m.numberOfAdults, Enumerable.Range(0, 6).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "dropDownList" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Concession</p>
-                </td>
-                <td>
-                    <p>$20.00</p>
-                </td>
-                <td>
-                    @Html.DropDownListFor(m => m.numberOfConc, Enumerable.Range(0, 6).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "dropDownList" })
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="col-md-6">
+        <h3>Select Tickets</h3>
+        <table class="ticketDisplay">
+            <tbody>
+                <tr>
+                    <td>
+                        <p>Adult</p>
+                    </td>
+                    <td>
+                        <p>$45.00</p>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.numberOfAdults, Enumerable.Range(0, 6).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "dropDownList", onchange = "changeNumber()" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Concession</p>
+                    </td>
+                    <td>
+                        <p>$20.00</p>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.numberOfConc, Enumerable.Range(0, 6).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "dropDownList", onchange = "changeNumber()" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h3>Session Details</h3>
+        Location: @ViewData["Location"] <br />
+        Movie: @ViewData["Film"] <br />
+        Date: @ViewData["SessionDate"] <br />
+        Time: @ViewData["SessionTime"] <br />
+        <p id="total">Total Price:</p>
+    </div>
 </div>
 <div class="col-md-12">
-    <h3>Session Details</h3>
-    Location: @ViewData["Location"] <br />
-    Movie: @ViewData["Film"] <br />
-    Date: @ViewData["SessionDate"] <br />
-    Time: @ViewData["SessionTime"] <br />
+    <div class="col-md-6">
+        <h3>Customer Details</h3>
+        Name: @Html.TextBoxFor(m => m.customerName, new { @class = "nameField" })<br />
+        <button class="button">Book Now!</button>
+    </div>
 </div>
-<div>
-    <button>Confirm</button>
-</div>
+
 
 
