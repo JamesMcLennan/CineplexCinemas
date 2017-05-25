@@ -1,10 +1,48 @@
-﻿
+﻿@model Booking
+
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+<h1>Booking</h1>
+<div class="col-md-12">
+    <h3>Select Tickets</h3>
+    <table class="ticketDisplay">
+        <tbody>
+            <tr>
+                <td>
+                    <p>Adult</p>
+                </td>
+                <td>
+                    <p>$45.00</p>
+                </td>
+                <td>
+                    @Html.DropDownListFor(m => m.numberOfAdults, Enumerable.Range(0, 6).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "dropDownList" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Concession</p>
+                </td>
+                <td>
+                    <p>$20.00</p>
+                </td>
+                <td>
+                    @Html.DropDownListFor(m => m.numberOfConc, Enumerable.Range(0, 6).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "dropDownList" })
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col-md-12">
+    <h3>Select Seats</h3>
+
+</div>
+
 @ViewData["Location"] <br />
 @ViewData["Film"] <br />
-@ViewData["SessionTime"] <br /> 
+@ViewData["SessionTime"] <br />
 @ViewData["SessionDate"] <br />
+
+

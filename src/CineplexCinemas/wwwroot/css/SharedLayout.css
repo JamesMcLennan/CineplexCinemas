@@ -144,3 +144,15 @@ Sessions SECTION
     border-top: 0;
     height: 100px;
 }
+
+/******
+Booking SECTION
+*******/
+
+.ticketDisplay tr td{
+    width:20%
+}
+
+.dropDownList {
+    color:black;
+}
