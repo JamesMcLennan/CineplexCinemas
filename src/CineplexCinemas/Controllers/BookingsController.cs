@@ -201,7 +201,7 @@ namespace CineplexCinemas.Controllers
             cartList.Add(item);
             HttpContext.Session.SetSession("cartItem", cartList);
             
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Cart");
         }
     }
 }

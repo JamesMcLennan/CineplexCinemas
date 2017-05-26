@@ -10,30 +10,8 @@ namespace CineplexCinemas.Controllers
 {
     public class HomeController : Controller
     {
-        private int items = 0;
         public IActionResult Index()
         {
-            var context = HttpContext.Session.GetSession<cartItem>("cartItem");
-            if (context == null)
-            {
-                return View();
-            }
-            foreach (var item in context)
-            {
-                if(items == 0)
-                {
-                    items++;
-                    ViewBag.LocationId = item.cineplxId;
-                    ViewBag.MovieID = item.movieId;
-                    ViewBag.SessionID = item.sessionId;
-                }
-                else if(items == 1)
-                {
-                    ViewBag.LocationId1 = item.cineplxId;
-                    ViewBag.MovieID1 = item.movieId;
-                    ViewBag.SessionID1 = item.sessionId;
-                }
-            }
             return View();
         }
 
