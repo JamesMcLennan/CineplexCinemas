@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CineplexCinemas.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Session;
 
 namespace CineplexCinemas.Controllers
 {
@@ -16,6 +18,11 @@ namespace CineplexCinemas.Controllers
         private Movie film;
         private Session session;
 
+        private int cinemaId;
+        private int movieId;
+        private int sessionId;
+
+        private string name;
 
         public BookingsController(CineplexDatabaseContext context)
         {
@@ -56,7 +63,7 @@ namespace CineplexCinemas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BookingId")] Booking booking)
+        public async Task<IActionResult> Create([Bind("BookingId,cineplxId,customerName,movieId,numberOfAdults,numberOfConc,sessionId")] Booking booking)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +95,7 @@ namespace CineplexCinemas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BookingId")] Booking booking)
+        public async Task<IActionResult> Edit(int id, [Bind("BookingId,cineplxId,customerName,movieId,numberOfAdults,numberOfConc,sessionId")] Booking booking)
         {
             if (id != booking.BookingId)
             {
@@ -150,25 +157,48 @@ namespace CineplexCinemas.Controllers
         {
             return _context.Booking.Any(e => e.BookingId == id);
         }
-
+        
         public IActionResult sessionDetails(int cineplexId, int movieId, int sessionId)
         {
+            //Store Id's
+            cinemaId = cineplexId;
+            this.movieId = movieId;
+            this.sessionId = sessionId;
 
             var cinemaList = _context.Cineplex.ToList();
             var movieList = _context.Movie.ToList();
             var sessionList = _context.Session.ToList();
+
             cinema = cinemaList.Find(e => e.CineplexId == cineplexId);
             film = movieList.Find(e => e.MovieId == movieId);
             session = sessionList.Find(e => e.SessionId == sessionId);
 
             if (cinema != null && film != null && session != null)
             {
+                ViewData["CinemaId"] = cinemaId;
+                ViewData["movieId"] = movieId;
+                ViewData["sessionId"] = sessionId;
                 ViewData["Location"] = cinema.Location;
                 ViewData["Film"] = film.Title;
                 ViewData["SessionTime"] = session.SessionDateTime.TimeOfDay.ToString();
                 ViewData["SessionDate"] = session.SessionDateTime.Day + "/" + session.SessionDateTime.Month + "/" + session.SessionDateTime.Year;
             }
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult confirmationToCart(Booking booking)
+        {
+
+            HttpContext.Session.SetSession("cartItem", new Booking(sessionId, movieId, sessionId)
+            {
+            });
+
+            HttpContext.Session.SetString("CustomerName", booking.customerName);
+            HttpContext.Session.SetInt32("numberOfAdults", booking.numberOfAdults);
+            HttpContext.Session.SetInt32("numberOfConc", booking.numberOfConc);
+            
+            return RedirectToAction("Index", "Home");
         }
     }
 }

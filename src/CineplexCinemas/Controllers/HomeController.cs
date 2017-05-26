@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using CineplexCinemas.Models;
 
 namespace CineplexCinemas.Controllers
 {
@@ -10,6 +12,16 @@ namespace CineplexCinemas.Controllers
     {
         public IActionResult Index()
         {
+            var context = HttpContext.Session.GetSession<Booking>("cartItem");
+            if (context != null)
+            {
+                ViewBag.LocationId = context.cineplxId;
+                ViewBag.MovieID = context.movieId;
+                ViewBag.SessionID = context.sessionId;
+                ViewBag.numberOfAdults = HttpContext.Session.GetInt32("numberOfAdults");
+                ViewBag.numberOfConc = HttpContext.Session.GetInt32("numberOfConc");
+                ViewBag.CustomerName = HttpContext.Session.GetString("CustomerName");
+            }
             return View();
         }
 

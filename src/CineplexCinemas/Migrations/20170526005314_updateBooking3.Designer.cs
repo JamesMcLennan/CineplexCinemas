@@ -8,8 +8,8 @@ using CineplexCinemas.Models;
 namespace CineplexCinemas.Migrations
 {
     [DbContext(typeof(CineplexDatabaseContext))]
-    [Migration("20170523120054_Booking")]
-    partial class Booking
+    [Migration("20170526005314_updateBooking3")]
+    partial class updateBooking3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,15 +22,21 @@ namespace CineplexCinemas.Migrations
                     b.Property<int>("BookingId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("MovieId");
+                    b.Property<int?>("SessionDetailsCineplexId");
 
-                    b.Property<int>("SessionId");
+                    b.Property<int?>("SessionDetailsMovieId");
+
+                    b.Property<int?>("SessionDetailsSessionId");
+
+                    b.Property<string>("customerName");
+
+                    b.Property<int>("numberOfAdults");
+
+                    b.Property<int>("numberOfConc");
 
                     b.HasKey("BookingId");
 
-                    b.HasIndex("MovieId");
-
-                    b.HasIndex("SessionId");
+                    b.HasIndex("SessionDetailsCineplexId", "SessionDetailsMovieId", "SessionDetailsSessionId");
 
                     b.ToTable("Booking");
                 });
@@ -167,15 +173,9 @@ namespace CineplexCinemas.Migrations
 
             modelBuilder.Entity("CineplexCinemas.Models.Booking", b =>
                 {
-                    b.HasOne("CineplexCinemas.Models.Movie", "Movie")
+                    b.HasOne("CineplexCinemas.Models.CineplexMovie", "SessionDetails")
                         .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CineplexCinemas.Models.Session", "Session")
-                        .WithMany()
-                        .HasForeignKey("SessionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SessionDetailsCineplexId", "SessionDetailsMovieId", "SessionDetailsSessionId");
                 });
 
             modelBuilder.Entity("CineplexCinemas.Models.CineplexMovie", b =>
