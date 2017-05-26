@@ -1,0 +1,178 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <h1>Movie Manager</h1>
+    <form>
+        <table border="1">
+            <tr>
+                <td>Movie ID :</td>
+                <td>
+                    <select id="movieid"></select>
+                    OR
+                    <input id="newmovieid" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>Title :</td>
+                <td><input id="title" type="text" /></td>
+            </tr>
+            <tr>
+                <td>Short Description :</td>
+                <td><input id="shortdesc" type="text" /></td>
+            </tr>
+            <tr>
+                <td>Long Description :</td>
+                <td><input id="longdesc" type="text" /></td>
+            </tr>
+            <tr>
+                <td>Image URL :</td>
+                <td><input id="imageurl" type="text" /></td>
+            </tr>
+            <tr>
+                <td>Price :</td>
+                <td><input id="price" type="text" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" id="insert"
+                           value="Insert" />
+                    <input type="button" id="update"
+                           value="Update" />
+                    <input type="button" id="delete"
+                           value="Delete" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <div id="msg"></div>
+    </form>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Filling the dropdown list with CustomerIDs
+            var options = {};
+            options.url = "http://localhost:15956/api/moviemanager";
+            options.type = "GET";
+            options.dataType = "json";
+            options.success = function (data) {
+                data.forEach(function (element) {
+                    $("#movieid").append("<option>"
+                    + element.movieID + "</option>");
+                });
+            };
+            options.error = function () {
+                $("#msg").html("Error while calling the Web API!");
+                alert("1");
+            };
+            $.ajax(options);
+
+            //getting customer's information
+            $("#movieid").change(function () {
+                var options = {};
+                options.url = "http://localhost:15956/api/moviemanager/" +
+                               $("#movieid").val();
+                options.type = "GET";
+                options.dataType = "json";
+                options.success = function (data) {
+                    $("#title").val(data.title);
+                    $("#shortdesc").val(data.shortDescription);
+                    $("#longdesc").val(data.longDescription);
+                    $("#imageurl").val(data.imageUrl);
+                    $("#price").val(data.price);
+                };
+                options.error = function (a, b, c) {
+                    alert(a.responseText);
+                    $("#msg").html("Error while calling the Web API!");
+                    alert("2");
+                };
+                $.ajax(options);
+            });
+
+            //adding a new customer
+            $("#insert").click(function () {
+                var options = {};
+                options.url = "http://localhost:15956/api/moviemanager/";
+                options.type = "POST";
+
+                var obj = {};
+                obj.MovieID = $("#newmovieid").val();
+                obj.Title = $("#title").val();
+                obj.ShortDescription = $("#shortdesc").val();
+                obj.LongDescription = $("#longdesc").val();
+                obj.ImageUrl = $("#imageurl").val();
+                obj.Price = $("#price").val();
+
+                options.data = JSON.stringify(obj);
+                options.contentType = "application/json";
+                options.dataType = "html";
+                alert("check");
+                options.success = function (msg) {
+                    $("#msg").html(msg);
+                };
+                options.error = function () {
+                    $("#msg").html("Error while calling the Web API!");
+                    alert("3");
+                };
+                $.ajax(options);
+            });
+
+            //modifying customer
+            $("#update").click(function () {
+                var options = {};
+                options.url = "http://localhost:15956/api/moviemanager/"
+                              + $("#movieid").val();
+                options.type = "PUT";
+
+                var obj = {};
+                obj.MovieID = $("#movieid").val();
+                obj.Title = $("#title").val();
+                obj.ShortDescription = $("#shortdesc").val();
+                obj.LongDescription = $("#longdesc").val();
+                obj.ImageUrl = $("#imageurl").val();
+                obj.Price = $("#price").val();
+
+                options.data = JSON.stringify(obj);
+                options.contentType = "application/json";
+                options.dataType = "html";
+                options.success = function (msg) {
+                    $("#msg").html(msg);
+                };
+                options.error = function (a, b, c) {
+                    alert(c);
+                    $("#msg").html("Error while calling the Web API!");
+                    alert("4");
+                };
+                $.ajax(options);
+            });
+
+            //deleting customer
+            $("#delete").click(function () {
+                var options = {};
+                options.url = "http://localhost:15956/api/moviemanager/"
+                              + $("#movieid").val();
+                options.type = "DELETE";
+                options.dataType = "html";
+                options.success = function (msg) {
+                    $("#msg").html(msg);
+                };
+                options.error = function () {
+                    $("#msg").html("Error while calling the Web API!");
+                    alert("5");
+                };
+                $.ajax(options);
+            });
+
+        });
+    </script>
+</body>
+</html>
