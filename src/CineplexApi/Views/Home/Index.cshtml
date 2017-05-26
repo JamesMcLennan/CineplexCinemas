@@ -72,7 +72,6 @@
             };
             options.error = function () {
                 $("#msg").html("Error while calling the Web API!");
-                alert("1");
             };
             $.ajax(options);
 
@@ -93,7 +92,6 @@
                 options.error = function (a, b, c) {
                     alert(a.responseText);
                     $("#msg").html("Error while calling the Web API!");
-                    alert("2");
                 };
                 $.ajax(options);
             });
@@ -115,13 +113,11 @@
                 options.data = JSON.stringify(obj);
                 options.contentType = "application/json";
                 options.dataType = "html";
-                alert("check");
                 options.success = function (msg) {
                     $("#msg").html(msg);
                 };
                 options.error = function () {
                     $("#msg").html("Error while calling the Web API!");
-                    alert("3");
                 };
                 $.ajax(options);
             });
@@ -150,7 +146,6 @@
                 options.error = function (a, b, c) {
                     alert(c);
                     $("#msg").html("Error while calling the Web API!");
-                    alert("4");
                 };
                 $.ajax(options);
             });
@@ -167,7 +162,6 @@
                 };
                 options.error = function () {
                     $("#msg").html("Error while calling the Web API!");
-                    alert("5");
                 };
                 $.ajax(options);
             });
