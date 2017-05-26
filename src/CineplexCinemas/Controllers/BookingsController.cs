@@ -189,14 +189,17 @@ namespace CineplexCinemas.Controllers
         [HttpPost]
         public IActionResult confirmationToCart(Booking booking)
         {
-
-            HttpContext.Session.SetSession("cartItem", new Booking(sessionId, movieId, sessionId)
+            var cartList = HttpContext.Session.GetSession<cartItem>("cartItem");
+            if (cartList == null)
             {
-            });
-
-            HttpContext.Session.SetString("CustomerName", booking.customerName);
-            HttpContext.Session.SetInt32("numberOfAdults", booking.numberOfAdults);
-            HttpContext.Session.SetInt32("numberOfConc", booking.numberOfConc);
+                cartList = new List<cartItem>();
+            }
+            cartItem item = new cartItem();
+            item.cineplxId = booking.cineplxId;
+            item.movieId = booking.movieId;
+            item.sessionId = booking.sessionId;
+            cartList.Add(item);
+            HttpContext.Session.SetSession("cartItem", cartList);
             
             return RedirectToAction("Index", "Home");
         }

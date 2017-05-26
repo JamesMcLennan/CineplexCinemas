@@ -1,21 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CineplexCinemas.Models;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace System
 {
     public static class SessionExtensions
     {
-        public static void SetSession(this ISession session, string key, object value)
+        public static void SetSession(this ISession session, string key, List<cartItem> value)
         {
             session.SetString(key, JsonConvert.SerializeObject(value));
         }
 
-        public static T GetSession<T>(this ISession session, string key)
+        public static List<T> GetSession<T>(this ISession session, string key)
         {
             var value = session.GetString(key);
 
-            return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
+            return value == null ? default(List<T>) : JsonConvert.DeserializeObject<List<T>>(value);
         }
     }
 }

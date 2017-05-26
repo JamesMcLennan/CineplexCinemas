@@ -59,7 +59,12 @@ namespace CineplexCinemas
                 options.Filters.Add(new RequireHttpsAttribute());
             });
             services.AddDistributedMemoryCache();
-            services.AddSession();
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.CookieHttpOnly = true;
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
