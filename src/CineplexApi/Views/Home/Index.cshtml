@@ -59,7 +59,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            //Filling the dropdown list with CustomerIDs
+            //Filling the dropdown list with MovieIDs
             var options = {};
             options.url = "http://localhost:15956/api/moviemanager";
             options.type = "GET";
@@ -75,7 +75,7 @@
             };
             $.ajax(options);
 
-            //getting customer's information
+            //getting movie's information
             $("#movieid").change(function () {
                 var options = {};
                 options.url = "http://localhost:15956/api/moviemanager/" +
@@ -96,7 +96,7 @@
                 $.ajax(options);
             });
 
-            //adding a new customer
+            //adding a new movie
             $("#insert").click(function () {
                 var options = {};
                 options.url = "http://localhost:15956/api/moviemanager/";
@@ -122,7 +122,7 @@
                 $.ajax(options);
             });
 
-            //modifying customer
+            //modifying movie
             $("#update").click(function () {
                 var options = {};
                 options.url = "http://localhost:15956/api/moviemanager/"
@@ -150,7 +150,7 @@
                 $.ajax(options);
             });
 
-            //deleting customer
+            //deleting movie
             $("#delete").click(function () {
                 var options = {};
                 options.url = "http://localhost:15956/api/moviemanager/"
