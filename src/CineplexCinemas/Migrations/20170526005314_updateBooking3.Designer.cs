@@ -8,14 +8,38 @@ using CineplexCinemas.Models;
 namespace CineplexCinemas.Migrations
 {
     [DbContext(typeof(CineplexDatabaseContext))]
-    [Migration("20170506090454_movieToSession")]
-    partial class movieToSession
+    [Migration("20170526005314_updateBooking3")]
+    partial class updateBooking3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CineplexCinemas.Models.Booking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("SessionDetailsCineplexId");
+
+                    b.Property<int?>("SessionDetailsMovieId");
+
+                    b.Property<int?>("SessionDetailsSessionId");
+
+                    b.Property<string>("customerName");
+
+                    b.Property<int>("numberOfAdults");
+
+                    b.Property<int>("numberOfConc");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("SessionDetailsCineplexId", "SessionDetailsMovieId", "SessionDetailsSessionId");
+
+                    b.ToTable("Booking");
+                });
 
             modelBuilder.Entity("CineplexCinemas.Models.Cineplex", b =>
                 {
@@ -49,8 +73,8 @@ namespace CineplexCinemas.Migrations
 
                     b.Property<int>("SessionId");
 
-                    b.HasKey("CineplexId", "MovieId")
-                        .HasName("PK__Cineplex__CB419E6DBEC2DF18");
+                    b.HasKey("CineplexId", "MovieId", "SessionId")
+                        .HasName("PK__Cineplex__CB419E6DA1BDF631");
 
                     b.HasIndex("CineplexId");
 
@@ -130,21 +154,28 @@ namespace CineplexCinemas.Migrations
                     b.Property<int>("SessionId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("FilmMovieId")
+                        .HasColumnName("filmMovieId");
+
                     b.Property<int>("SeatsAvailable");
 
                     b.Property<int>("SeatsTotal");
 
-                    b.Property<DateTime>("SessionDate");
-
-                    b.Property<DateTime>("SessionTime");
-
-                    b.Property<int?>("filmMovieId");
+                    b.Property<DateTime>("SessionDateTime");
 
                     b.HasKey("SessionId");
 
-                    b.HasIndex("filmMovieId");
+                    b.HasIndex("FilmMovieId")
+                        .HasName("IX_Session_filmMovieId");
 
                     b.ToTable("Session");
+                });
+
+            modelBuilder.Entity("CineplexCinemas.Models.Booking", b =>
+                {
+                    b.HasOne("CineplexCinemas.Models.CineplexMovie", "SessionDetails")
+                        .WithMany()
+                        .HasForeignKey("SessionDetailsCineplexId", "SessionDetailsMovieId", "SessionDetailsSessionId");
                 });
 
             modelBuilder.Entity("CineplexCinemas.Models.CineplexMovie", b =>
@@ -152,24 +183,24 @@ namespace CineplexCinemas.Migrations
                     b.HasOne("CineplexCinemas.Models.Cineplex", "Cineplex")
                         .WithMany("CineplexMovie")
                         .HasForeignKey("CineplexId")
-                        .HasConstraintName("FK__CineplexM__Cinep__182C9B23");
+                        .HasConstraintName("FK__CineplexM__Cinep__6FE99F9F");
 
                     b.HasOne("CineplexCinemas.Models.Movie", "Movie")
                         .WithMany("CineplexMovie")
                         .HasForeignKey("MovieId")
-                        .HasConstraintName("FK__CineplexM__Movie__1920BF5C");
+                        .HasConstraintName("FK__CineplexM__Movie__70DDC3D8");
 
                     b.HasOne("CineplexCinemas.Models.Session", "Session")
-                        .WithMany()
+                        .WithMany("CineplexMovie")
                         .HasForeignKey("SessionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CineplexCinemas.Models.Session", b =>
                 {
-                    b.HasOne("CineplexCinemas.Models.Movie", "film")
-                        .WithMany()
-                        .HasForeignKey("filmMovieId");
+                    b.HasOne("CineplexCinemas.Models.Movie", "FilmMovie")
+                        .WithMany("Session")
+                        .HasForeignKey("FilmMovieId");
                 });
         }
     }
