@@ -58,7 +58,7 @@ namespace CineplexCinemas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EnquiryId,Email,Message")] Enquiry enquiry)
+        public async Task<IActionResult> Create([Bind("EnquiryId,Email,Message,EventDate")] Enquiry enquiry)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace CineplexCinemas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EnquiryId,Email,Message")] Enquiry enquiry)
+        public async Task<IActionResult> Edit(int id, [Bind("EnquiryId,Email,Message,EventDate")] Enquiry enquiry)
         {
             if (id != enquiry.EnquiryId)
             {
