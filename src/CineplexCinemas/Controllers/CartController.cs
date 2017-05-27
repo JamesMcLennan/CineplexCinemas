@@ -21,6 +21,7 @@ namespace CineplexCinemas.Controllers
             if (context == null)
             {
                 items = 0;
+                ViewBag.EmptyCart = "There are currently no items in the cart!";
                 return View();
             }
             foreach (var item in context)
@@ -28,9 +29,14 @@ namespace CineplexCinemas.Controllers
                 if (items == 0)
                 {
                     items++;
+                    ViewBag.CartItemNo = items;
                     ViewBag.LocationId = item.cineplxId;
                     ViewBag.MovieID = item.movieId;
                     ViewBag.SessionID = item.sessionId;
+                    ViewBag.Name = item.customerName;
+                    ViewBag.noAdults = item.numberOfAdults;
+                    ViewBag.noConcession = item.numberOfConc;
+                    ViewBag.WarningTime = "Please note that your session will expire in a 10 minute timeframe. If you do not complete your booking within this period, or if you are inactive.";
                 }
                 else if (items == 1)
                 {
@@ -38,6 +44,9 @@ namespace CineplexCinemas.Controllers
                     ViewBag.LocationId1 = item.cineplxId;
                     ViewBag.MovieID1 = item.movieId;
                     ViewBag.SessionID1 = item.sessionId;
+                    ViewBag.Name1 = item.customerName;
+                    ViewBag.noAdults1 = item.numberOfAdults;
+                    ViewBag.noConcession1 = item.numberOfConc;
                 }
                 else if(items == 2)
                 {
@@ -45,6 +54,9 @@ namespace CineplexCinemas.Controllers
                     ViewBag.LocationId2 = item.cineplxId;
                     ViewBag.MovieID2 = item.movieId;
                     ViewBag.SessionID2 = item.sessionId;
+                    ViewBag.Name2 = item.customerName;
+                    ViewBag.noAdults2 = item.numberOfAdults;
+                    ViewBag.noConcession2 = item.numberOfConc;
                 }
                 else if (items == 3)
                 {
@@ -52,6 +64,9 @@ namespace CineplexCinemas.Controllers
                     ViewBag.LocationId3 = item.cineplxId;
                     ViewBag.MovieID3 = item.movieId;
                     ViewBag.SessionID3 = item.sessionId;
+                    ViewBag.Name3 = item.customerName;
+                    ViewBag.noAdults3 = item.numberOfAdults;
+                    ViewBag.noConcession3 = item.numberOfConc;
                 }
                 else if (items == 4)
                 {
@@ -59,9 +74,27 @@ namespace CineplexCinemas.Controllers
                     ViewBag.LocationId4 = item.cineplxId;
                     ViewBag.MovieID4 = item.movieId;
                     ViewBag.SessionID4 = item.sessionId;
+                    ViewBag.Name4 = item.customerName;
+                    ViewBag.noAdults4 = item.numberOfAdults;
+                    ViewBag.noConcession4 = item.numberOfConc;
                 }
             }
             return View();
+        }
+
+        public IActionResult DeleteFromCart(int itemId)
+        {
+            var context = HttpContext.Session.GetSession<cartItem>("cartItem");
+            foreach(cartItem item in context)
+            {
+                if(item.cartId.Equals(itemId))
+                {
+                    context.Remove(item);
+                    
+                }
+            }
+            HttpContext.Session.SetSession("cartItem", context);
+            return RedirectToAction("Index");
         }
     }
 }

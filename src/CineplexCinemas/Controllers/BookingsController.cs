@@ -198,6 +198,9 @@ namespace CineplexCinemas.Controllers
             item.cineplxId = booking.cineplxId;
             item.movieId = booking.movieId;
             item.sessionId = booking.sessionId;
+            item.customerName = booking.customerName;
+            item.numberOfAdults = booking.numberOfAdults;
+            item.numberOfConc = booking.numberOfConc;
             cartList.Add(item);
             HttpContext.Session.SetSession("cartItem", cartList);
             
