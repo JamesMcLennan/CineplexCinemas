@@ -43,16 +43,10 @@ namespace CineplexCinemas.Controllers
         [HttpPost]
         public string Post([FromBody]Movie obj)
         {
-            Movie tempMovie = new Movie();
-            tempMovie.MovieID = obj.MovieID;
-            tempMovie.Title = obj.Title;
-            tempMovie.ShortDescription = obj.ShortDescription;
-            tempMovie.LongDescription = obj.LongDescription;
-            tempMovie.ImageUrl = obj.ImageUrl;
-            tempMovie.Price = obj.Price;
             using (CineplexDatabaseContext db = new CineplexDatabaseContext())
             {
-                db.Movie.Add(tempMovie);
+                
+                db.Movie.Add(obj);
                 db.SaveChanges();
                 return "Movie added successfully!";
             }
