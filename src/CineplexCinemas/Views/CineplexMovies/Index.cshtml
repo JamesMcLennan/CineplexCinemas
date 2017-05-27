@@ -4,12 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<link href="~/css/jquery.datetimepicker.css" rel="stylesheet" />
-<script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
-<script src="~/lib/datetimepicker/jquery.datetimepicker.js" type="text/javascript"></script>
+
 
 <div class="col-md-12">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <h2>Search by Cinema</h2>
         @Html.ActionLink("St Kilda", "Sessions", new { cinemaName = "St Kilda" })<br />
         @Html.ActionLink("Fitzroy", "Sessions", new { cinemaName = "Fitzroy" })<br />
@@ -17,12 +15,17 @@
         @Html.ActionLink("Sunshine", "Sessions", new { cinemaName = "Sunshine" })<br />
         @Html.ActionLink("Lilydale", "Sessions", new { cinemaName = "Lilydale" })<br />
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <h2>Search by Movie</h2>
         @Html.ActionLink("The Matrix", "Sessions", new { movieName = "The Matrix" })<br />
         @Html.ActionLink("The Matrix Reloaded", "Sessions", new { movieName = "The Matrix Reloaded" })<br />
         @Html.ActionLink("The Matrix Revolution", "Sessions", new { movieName = "The Matrix Revolution" })<br />
     </div>
+
+
+    @*<link href="~/css/jquery.datetimepicker.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
+    <script src="~/lib/datetimepicker/jquery.datetimepicker.js" type="text/javascript"></script>
     <div class="col-md-4">
         <h2>Search by Date</h2>
         <input type="text" id="datetimepicker" class="text-danger" />
@@ -37,5 +40,5 @@
             });
             jQuery('#datetimepicker').datetimepicker({ value: todaysdate.getDate().toString(), step: 30 });
         </script>
-    </div>
+    </div>*@
 </div>
