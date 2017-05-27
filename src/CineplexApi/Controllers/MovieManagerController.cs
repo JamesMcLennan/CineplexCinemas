@@ -39,7 +39,7 @@ namespace CineplexCinemas.Controllers
 
         }
 
-        // POST api/values
+        // POST(Add) api/values
         [HttpPost]
         public string Post([FromBody]Movie obj)
         {
@@ -58,7 +58,7 @@ namespace CineplexCinemas.Controllers
             }
         }
 
-        // PUT api/values/5
+        // PUT(Modify) api/values/5
         [HttpPut("{id}")]
         public string Put(int id, [FromBody]Movie obj)
         {
