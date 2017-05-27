@@ -136,9 +136,40 @@ Cinemas SECTION
     color: red;
 }
 
+#cinemaDescrip {
+    margin:40px;
+    margin-bottom:20px;
+}
+/****
+Movies SECTION
+***/
+
+#Movies {
+    text-align: center;
+}
+
+#Movies h2 {
+    font-family: 'Lobster', cursive;
+    color: red;
+}
+#movieDescrip {
+    margin:40px;
+    margin-bottom:20px;
+}
 /******
 Sessions SECTION
 ******/
+
+#filterSessions {
+    text-align: center;
+    padding:20px;
+}
+
+#filterItemsList h2{
+    font-family: 'Lobster', cursive;
+    color: red;
+}
+
 
 .table.borderless td{
     border-top: 0;
