@@ -21,7 +21,7 @@ namespace CineplexCinemas.Controllers
         // GET: CineplexMovies
         public async Task<IActionResult> Index()
         {
-            var cineplexDatabaseContext = _context.CineplexMovie.Include(c => c.Cineplex).Include(c => c.Movie);
+            var cineplexDatabaseContext = _context.CineplexMovie.Include(c => c.Cineplex).Include(c => c.Movie).Include(c => c.Session);
             return View(await cineplexDatabaseContext.ToListAsync());
         }
 
@@ -150,10 +150,38 @@ namespace CineplexCinemas.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
+        
         private bool CineplexMovieExists(int id)
         {
             return _context.CineplexMovie.Any(e => e.CineplexId == id);
+        }
+
+        public IActionResult Sessions(string cinemaName, string movieName)
+        {
+            var cineplexDatabaseContext = _context.CineplexMovie.Include(c => c.Cineplex).Include(c => c.Movie).Include(c => c.Session);
+            var cineplexList = cineplexDatabaseContext.ToList();
+            lock (cineplexList)
+            {
+                foreach (var item in cineplexList.ToArray())
+                {
+                    if (cinemaName != null)
+                    {
+                        if (!item.Cineplex.Location.Equals(cinemaName))
+                        {
+                            cineplexList.Remove(item);
+                        }
+                    }
+                    if(movieName != null)
+                    {
+                        if (!item.Movie.Title.Equals(movieName))
+                        {
+                            cineplexList.Remove(item);
+                        }
+                    }
+                }
+            }
+            cineplexList = cineplexList.OrderBy(x => x.Session.SessionDateTime).ToList();
+            return View(cineplexList);
         }
     }
 }

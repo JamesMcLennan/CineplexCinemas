@@ -1,0 +1,36 @@
+@model CineplexCinemas.Models.Session
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Session</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SeatsAvailable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeatsAvailable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SeatsTotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeatsTotal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SessionDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SessionDateTime)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SessionId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

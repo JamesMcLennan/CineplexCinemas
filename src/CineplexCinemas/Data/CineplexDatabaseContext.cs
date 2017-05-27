@@ -8,11 +8,8 @@ namespace CineplexCinemas.Models
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
-#pragma warning disable CS1030 // #warning directive
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=CineplexDatabase;Trusted_Connection=True;");
-#pragma warning restore CS1030 // #warning directive
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,8 +27,8 @@ namespace CineplexCinemas.Models
 
             modelBuilder.Entity<CineplexMovie>(entity =>
             {
-                entity.HasKey(e => new { e.CineplexId, e.MovieId })
-                    .HasName("PK__Cineplex__CB419E6DBEC2DF18");
+                entity.HasKey(e => new { e.CineplexId, e.MovieId, e.SessionId })
+                    .HasName("PK__Cineplex__CB419E6DA1BDF631");
 
                 entity.Property(e => e.CineplexId).HasColumnName("CineplexID");
 
@@ -41,13 +38,17 @@ namespace CineplexCinemas.Models
                     .WithMany(p => p.CineplexMovie)
                     .HasForeignKey(d => d.CineplexId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK__CineplexM__Cinep__182C9B23");
+                    .HasConstraintName("FK__CineplexM__Cinep__6FE99F9F");
 
                 entity.HasOne(d => d.Movie)
                     .WithMany(p => p.CineplexMovie)
                     .HasForeignKey(d => d.MovieId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK__CineplexM__Movie__1920BF5C");
+                    .HasConstraintName("FK__CineplexM__Movie__70DDC3D8");
+
+                entity.HasOne(d => d.Session)
+                    .WithMany(p => p.CineplexMovie)
+                    .HasForeignKey(d => d.SessionId);
             });
 
             modelBuilder.Entity<Enquiry>(entity =>
@@ -82,6 +83,18 @@ namespace CineplexCinemas.Models
 
                 entity.Property(e => e.Title).IsRequired();
             });
+
+            modelBuilder.Entity<Session>(entity =>
+            {
+                entity.HasIndex(e => e.FilmMovieId)
+                    .HasName("IX_Session_filmMovieId");
+
+                entity.Property(e => e.FilmMovieId).HasColumnName("filmMovieId");
+
+                entity.HasOne(d => d.FilmMovie)
+                    .WithMany(p => p.Session)
+                    .HasForeignKey(d => d.FilmMovieId);
+            });
         }
 
         public virtual DbSet<Cineplex> Cineplex { get; set; }
@@ -89,5 +102,6 @@ namespace CineplexCinemas.Models
         public virtual DbSet<Enquiry> Enquiry { get; set; }
         public virtual DbSet<Movie> Movie { get; set; }
         public virtual DbSet<MovieComingSoon> MovieComingSoon { get; set; }
+        public virtual DbSet<Session> Session { get; set; }
     }
 }
