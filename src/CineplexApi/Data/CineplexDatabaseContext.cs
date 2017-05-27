@@ -11,6 +11,9 @@ namespace CineplexApi.Data
     public class CineplexDatabaseContext : DbContext
     {
         public DbSet<Movie> Movie { get; set; }
+        public DbSet<Session> Session { get; set; }
+        public DbSet<Cineplex> Cineplex { get; set; }
+        public DbSet<CineplexMovie> CineplexMovie { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
