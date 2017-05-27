@@ -26,8 +26,8 @@
         <div class="form-group">
             <label asp-for="EventDate" class="col-md-2 control-label"></label>
             <div class="col-md-9">
-                <input type="text" id="datetimepicker" class="text-danger" />
-
+                <input asp-for="EventDate" type="text" id="datetimepicker" class="text-danger" />
+                <span asp-validation-for="EventDate" class="text-danger" />
                 <script type="text/javascript">
 
                     var todaysdate = new Date();
@@ -38,36 +38,12 @@
                         startDate: todaysdate.getDate().toString(),
                         startTime: todaysdate.getTime().toString()
                     });
-                    jQuery('#datetimepicker').datetimepicker({ value: todaysdate.getDate().toString(), step: 60 });
+
+                    jQuery('#datetimepicker').datetimepicker({ value: todaysdate.getDate(), step: 60 });
                 </script>
-
-
-                @*<script type="text/javascript">
-                    var todaysdate = new Date();
-                    jQuery('#datetimepicker').datetimepicker({
-                        dayOfWeekStart: 1,
-                        lang: 'en',
-                        startDate: todaysdate.getDate().toString(),
-                        startTime: todaysdate.getTime().toString(),
-                        minDate: 0,
-                        onSelect: function (date) {
-                            value: startDate;
-                            var date = $(this).datetimepicker('getDate');
-                            $("#datetimepicker").datetimepicker('option', 'minDate', date);
-                        },
-                    });
-                    jQuery('#datetimepicker').datetimepicker({
-                       
-                        value: todaysdate.getDate().toString(),
-                        step: 30,
-                        format: 'Y-m-d h:m'
-                    });
-                </script>*@
             </div>
         </div>
             
-        
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Submit" class="btn btn-default" />
