@@ -104,6 +104,8 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script>
+            var itemsAddedToCart = 0;
+
             function changeNumber() {
                 var ticketOptionAdult = document.getElementById('numberOfAdults');
                 var ticketOptionConc = document.getElementById('numberOfConc');
@@ -111,8 +113,9 @@
                 var numberAdults = parseInt(ticketOptionAdult.options[ticketOptionAdult.selectedIndex].value);
                 var numberConc = parseInt(ticketOptionConc.options[ticketOptionConc.selectedIndex].value);
                 var totalNumberTickets = parseInt(numberAdults + numberConc);
+                var totalItemsInCart = document.getElementById('cartId');
 
-                if (totalNumberTickets <= 5)
+                if (totalNumberTickets <= 5 || itemsAddedToCart <= 5)
                 {
                     var totalAdult = numberAdults * 45;
                     var totalConc = numberConc * 20;
@@ -127,6 +130,10 @@
                     document.getElementById('addToCart').disabled = true;
                 }
                 
+            }
+
+            function updateItemsAdded() {
+                itemsAddedToCart++;
             }
         </script>
     </environment>

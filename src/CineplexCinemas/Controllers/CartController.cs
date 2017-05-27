@@ -15,6 +15,7 @@ namespace CineplexCinemas.Controllers
     public class CartController : Controller
     {
         private int items = 0;
+        public int itemCounter = 0;
         public IActionResult Index()
         {
             var context = HttpContext.Session.GetSession<cartItem>("cartItem");
@@ -24,6 +25,7 @@ namespace CineplexCinemas.Controllers
                 ViewBag.EmptyCart = "There are currently no items in the cart!";
                 return View();
             }
+
             foreach (var item in context)
             {
                 if (items == 0)
@@ -41,6 +43,7 @@ namespace CineplexCinemas.Controllers
                 else if (items == 1)
                 {
                     items++;
+                    ViewBag.CartItemNo = item.cartId;
                     ViewBag.LocationId1 = item.cineplxId;
                     ViewBag.MovieID1 = item.movieId;
                     ViewBag.SessionID1 = item.sessionId;
@@ -51,6 +54,7 @@ namespace CineplexCinemas.Controllers
                 else if(items == 2)
                 {
                     items++;
+                    ViewBag.CartItemNo = item.cartId;
                     ViewBag.LocationId2 = item.cineplxId;
                     ViewBag.MovieID2 = item.movieId;
                     ViewBag.SessionID2 = item.sessionId;
@@ -61,6 +65,7 @@ namespace CineplexCinemas.Controllers
                 else if (items == 3)
                 {
                     items++;
+                    ViewBag.CartItemNo = item.cartId;
                     ViewBag.LocationId3 = item.cineplxId;
                     ViewBag.MovieID3 = item.movieId;
                     ViewBag.SessionID3 = item.sessionId;
@@ -71,6 +76,7 @@ namespace CineplexCinemas.Controllers
                 else if (items == 4)
                 {
                     items++;
+                    ViewBag.CartItemNo = item.cartId;
                     ViewBag.LocationId4 = item.cineplxId;
                     ViewBag.MovieID4 = item.movieId;
                     ViewBag.SessionID4 = item.sessionId;
@@ -86,6 +92,47 @@ namespace CineplexCinemas.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult confirmationToCart(cartItem booking)
+        {
+            var cartList = HttpContext.Session.GetSession<cartItem>("cartItem");
+            if (cartList == null)
+            {
+                cartList = new List<cartItem>();
+            }
+            var numberOfList = HttpContext.Session.GetInt32("itemsInCart");
+            if (numberOfList == null)
+            {
+                numberOfList = default(int);
+                numberOfList = 1;
+                HttpContext.Session.SetInt32("itemsInCart", numberOfList.GetValueOrDefault());
+            }
+            else
+            {
+                HttpContext.Session.SetInt32("itemsInCart", numberOfList.GetValueOrDefault() + 1);
+            }
+
+            if (numberOfList <= 5)
+            {
+                cartItem item = new cartItem();
+                item.cartId = itemCounter;
+                item.cineplxId = booking.cineplxId;
+                item.movieId = booking.movieId;
+                item.sessionId = booking.sessionId;
+                item.customerName = booking.customerName;
+                item.numberOfAdults = booking.numberOfAdults;
+                item.numberOfConc = booking.numberOfConc;
+                cartList.Add(item);
+                HttpContext.Session.SetSession("cartItem", cartList);
+
+                return RedirectToAction("Index", "Cart");
+            }
+            else
+            {
+                return RedirectToAction("errorCartFull", "Cart");
+            }
+        }
+
         public IActionResult DeleteFromCart(int itemId)
         {
             var context = HttpContext.Session.GetSession<cartItem>("cartItem");
@@ -94,7 +141,7 @@ namespace CineplexCinemas.Controllers
                 if(booking.cartId.Equals(itemId))
                 {
                     context.Remove(booking);
-                    --items;
+                    --itemCounter;
                     HttpContext.Session.SetSession("cartItem", context);
                     return RedirectToAction("Index");
                 }
