@@ -32,6 +32,10 @@ hr.style {
 	color: white;
     text-decoration:none;
 }
+.button:disabled {
+    background-color:#D3D3D3;
+    color:black;
+}
 /******
 TITLE SECTION    
 ******/

@@ -118,11 +118,13 @@
                     var totalConc = numberConc * 20;
 
                     document.getElementById('total').innerHTML = "Total Price: Adults: $" + totalAdult + ".00, Concession's: $" + totalConc + ".00";
+                    document.getElementById('addToCart').disabled = false;
 
                 }
                 else
                 {
                     document.getElementById('total').innerHTML = "You cannot purchase more than 5 tickets per session!";
+                    document.getElementById('addToCart').disabled = true;
                 }
                 
             }

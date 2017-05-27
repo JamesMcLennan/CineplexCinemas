@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,8 +18,13 @@ namespace CineplexCinemas.Models
         }
 
         public int BookingId { get; set; }
+        [Range(0, 5)]
         public int numberOfAdults { get; set; }
+        [Range(0, 5)]
         public int numberOfConc { get; set; }
+        [Range(0, 5)]
+        public int totalNumberTickets { get; set; }
+        [Required]
         public string customerName { get; set; }
         public int sessionId { get; set; }
         public int movieId { get; set; }
