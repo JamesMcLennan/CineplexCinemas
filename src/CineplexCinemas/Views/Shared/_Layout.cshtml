@@ -115,7 +115,7 @@
                 var totalNumberTickets = parseInt(numberAdults + numberConc);
                 var totalItemsInCart = document.getElementById('cartId');
 
-                if (totalNumberTickets <= 5 || itemsAddedToCart <= 5)
+                if (totalNumberTickets <= 5 || itemsAddedToCart <= 4)
                 {
                     var totalAdult = numberAdults * 45;
                     var totalConc = numberConc * 20;
@@ -134,6 +134,11 @@
 
             function updateItemsAdded() {
                 itemsAddedToCart++;
+            }
+
+            function updateItemsRemoved() {
+                --itemsAddedToCart;
+                document.getElementById('cartTotal').innerHTML = "(Removed) items left " + itemsAddedToCart;
             }
         </script>
     </environment>

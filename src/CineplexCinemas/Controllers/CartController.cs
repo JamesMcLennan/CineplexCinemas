@@ -148,5 +148,10 @@ namespace CineplexCinemas.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public IActionResult errorCartFull()
+        {
+            return View();
+        }
     }
 }
