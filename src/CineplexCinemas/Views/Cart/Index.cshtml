@@ -15,10 +15,6 @@
         <br />
     </p>
 }
-else
-{
-    @ViewData["EmptyCart"] 
-}
 @if (ViewData["LocationId1"] != null)
 {
     <p>
@@ -29,6 +25,7 @@ else
         @ViewData["Name1"]
         @ViewData["noAdults1"]
         @ViewData["noConcession1"]
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
         <br />
     </p>
 }
@@ -42,6 +39,7 @@ else
         @ViewData["Name2"]
         @ViewData["noAdults2"]
         @ViewData["noConcession2"]
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
         <br />
     </p>
 }
@@ -55,6 +53,7 @@ else
         @ViewData["Name3"]
         @ViewData["noAdults3"]
         @ViewData["noConcession3"]
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
         <br />
     </p>
 }
@@ -68,6 +67,7 @@ else
         @ViewData["Name4"]
         @ViewData["noAdults4"]
         @ViewData["noConcession4"]
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
     </p>
 }
 @if (ViewData["LocationId"] != null)
@@ -76,3 +76,14 @@ else
         @ViewData["WarningTime"]
     </p>
 }
+else
+{  
+    <p>
+        @ViewData["EmptyCart"]
+    </p>
+}
+<form asp-controller="Bookings" asp-action="finaliseBookings">
+    <div>
+        <input type="submit" value="Book Now" class="button" />
+    </div>
+</form>

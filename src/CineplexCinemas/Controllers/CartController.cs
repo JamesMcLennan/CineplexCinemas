@@ -29,7 +29,7 @@ namespace CineplexCinemas.Controllers
                 if (items == 0)
                 {
                     items++;
-                    ViewBag.CartItemNo = items;
+                    ViewBag.CartItemNo = item.cartId;
                     ViewBag.LocationId = item.cineplxId;
                     ViewBag.MovieID = item.movieId;
                     ViewBag.SessionID = item.sessionId;
@@ -78,6 +78,10 @@ namespace CineplexCinemas.Controllers
                     ViewBag.noAdults4 = item.numberOfAdults;
                     ViewBag.noConcession4 = item.numberOfConc;
                 }
+                else
+                {
+                    ViewBag.LocationId = null;
+                }
             }
             return View();
         }
@@ -85,15 +89,16 @@ namespace CineplexCinemas.Controllers
         public IActionResult DeleteFromCart(int itemId)
         {
             var context = HttpContext.Session.GetSession<cartItem>("cartItem");
-            foreach(cartItem item in context)
+            foreach (var booking in context)
             {
-                if(item.cartId.Equals(itemId))
+                if(booking.cartId.Equals(itemId))
                 {
-                    context.Remove(item);
-                    
+                    context.Remove(booking);
+                    --items;
+                    HttpContext.Session.SetSession("cartItem", context);
+                    return RedirectToAction("Index");
                 }
             }
-            HttpContext.Session.SetSession("cartItem", context);
             return RedirectToAction("Index");
         }
     }
