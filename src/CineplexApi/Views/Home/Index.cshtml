@@ -24,22 +24,22 @@
                     <div class="form-group">
                         <label for="newenquiryid">Enquiry ID</label>
                         <select class="form-control" id="enquiryid"></select>
-                        <b>OR</b>
-                        <input class="form-control" id="newenquiryid" type="text" placeholder="10" />
+                        @*<b>OR</b>
+                        <input class="form-control" id="newenquiryid" type="text" placeholder="10" />*@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input class="form-control" id="email" type="text" placeholder="Email"/>
+                        <input class="form-control" id="email" type="text" placeholder="s3558745@student.rmit.edu.au"/>
                     </div>
                     <div class="form-group">
                         <label for="eventmsg">Event Message</label>
-                        <input class="form-control" id="eventmsg" type="text" placeholder="Event Message" />
+                        <input class="form-control" id="eventmsg" type="text" placeholder="WDT course end Celebration" />
                     </div>
                     <div class="form-group">
                         <label for="eventdate">Event Date</label>
-                        <input class="form-control" id="eventdate" type="text" placeholder="2017/08"/>
+                        <input class="form-control" id="eventdate" type="text" placeholder="2017-08-10 18:30"/>
                     </div>
-                    <input type="button" id="insert" value="Insert" class="btn btn-default" />
+                    @*<input type="button" id="insert" value="Insert" class="btn btn-default" />*@
                     <input type="button" id="update" value="Update" class="btn btn-default" />
                     <input type="button" id="delete" value="Delete" class="btn btn-default" />
                 </form>
@@ -52,58 +52,9 @@
         </div>
     </div>
 
-
-
-
-   
-    @*<form>
-        <table border="1">
-            <tr>
-                <td>Enquiry ID :</td>
-                <td>
-                    <select id="enquiryid"></select>
-                    OR
-                    <input id="newenquiryid" type="text" />
-                </td>
-            </tr>
-            <tr>
-                <td>Email :</td>
-                <td><input id="email" type="text" /></td>
-            </tr>
-            <tr>
-                <td>Event Message :</td>
-                <td><input id="eventmsg" type="text" /></td>
-            </tr>
-            <tr>
-                <td>Event Date :</td>
-                <td><input id="eventdate" type="text" /></td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <input type="button" id="insert"
-                           value="Insert" />
-                    <input type="button" id="update"
-                           value="Update" />
-                    <input type="button" id="delete"
-                           value="Delete" />
-                </td>
-            </tr>
-        </table>
-        <br />
-        <div id="msg"></div>
-    </form>*@
-
-
-
-
-
-
-
-
     <script type="text/javascript">
         $(document).ready(function () {
-            //Filling the dropdown list with MovieIDs
+            //Filling the dropdown list with EnquiryID
             var options = {};
             options.url = "http://localhost:15956/api/customerevent";
             options.type = "GET";
@@ -119,7 +70,7 @@
             };
             $.ajax(options);
 
-            //getting movie's information
+            //getting event's information
             $("#enquiryid").change(function () {
                 var options = {};
                 options.url = "http://localhost:15956/api/customerevent" +
@@ -138,32 +89,32 @@
                 $.ajax(options);
             });
 
-            //adding a new movie
-            $("#insert").click(function () {
-                var options = {};
-                options.url = "http://localhost:15956/api/customerevent";
-                options.type = "POST";
+            ////adding a new event
+            //$("#insert").click(function () {
+            //    var options = {};
+            //    options.url = "http://localhost:15956/api/customerevent";
+            //    options.type = "POST";
 
-                var obj = {};
-                obj.EnquiryID = $("#newenquiryid").val();
-                obj.Email = $("#email").val();
-                obj.Message = $("#eventmsg").val();
-                obj.EventDate = $("#eventdate").val();
+            //    var obj = {};
+            //    obj.EnquiryID = $("#newenquiryid").val();
+            //    obj.Email = $("#email").val();
+            //    obj.Message = $("#eventmsg").val();
+            //    obj.EventDate = $("#eventdate").val();
 
-                console.log(obj);
-                options.data = JSON.stringify(obj);
-                options.contentType = "application/json";
-                options.dataType = "html";
-                options.success = function (msg) {
-                    $("#msg").html(msg);
-                };
-                options.error = function () {
-                    $("#msg").html("Error while calling the Web API!");
-                };
-                $.ajax(options);
-            });
+            //    console.log(obj);
+            //    options.data = JSON.stringify(obj);
+            //    options.contentType = "application/json";
+            //    options.dataType = "html";
+            //    options.success = function (msg) {
+            //        $("#msg").html(msg);
+            //    };
+            //    options.error = function () {
+            //        $("#msg").html("Error while calling the Web API!");
+            //    };
+            //    $.ajax(options);
+            //});
 
-            //modifying movie
+            //modifying Event
             $("#update").click(function () {
                 var options = {};
                 options.url = "http://localhost:15956/api/customerevent/"
@@ -189,7 +140,7 @@
                 $.ajax(options);
             });
 
-            //deleting movie
+            //deleting Event
             $("#delete").click(function () {
                 var options = {};
                 options.url = "http://localhost:15956/api/customerevent/"

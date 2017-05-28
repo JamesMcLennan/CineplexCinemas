@@ -41,16 +41,16 @@ namespace CineplexApi.Controllers
         }
 
         // POST api/values
-        [HttpPost]
-        public string Post([FromBody]Enquiry obj)
-        {
-            using (CineplexDatabaseContext db = new CineplexDatabaseContext())
-            {
-                db.Enquiries.Add(obj);
-                db.SaveChanges();
-                return "Enquiry added successfully!";
-            }
-        }
+        //[HttpPost]
+        //public string Post([FromBody]Enquiry obj)
+        //{
+        //    using (CineplexDatabaseContext db = new CineplexDatabaseContext())
+        //    {
+        //        db.Enquiries.Add(obj);
+        //        db.SaveChanges();
+        //        return "Enquiry added successfully!";
+        //    }
+        //}
 
         // PUT api/values/5
         [HttpPut("{id}")]
