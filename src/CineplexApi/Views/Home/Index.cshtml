@@ -8,11 +8,55 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link rel="stylesheet" href="~/style/bootstrap.min.css">
     <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
 </head>
-<body>
-    <h1>Cineplex Cinemas Customer Event Manager - Admin</h1>
-    <form>
+<body style="background-color:dimgray; color:white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1>Cineplex Cinemas Customer Event Manager - Admin</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form>
+                    <div class="form-group">
+                        <label for="newenquiryid">Enquiry ID</label>
+                        <select class="form-control" id="enquiryid"></select>
+                        <b>OR</b>
+                        <input class="form-control" id="newenquiryid" type="text" placeholder="10" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" id="email" type="text" placeholder="Email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventmsg">Event Message</label>
+                        <input class="form-control" id="eventmsg" type="text" placeholder="Event Message" />
+                    </div>
+                    <div class="form-group">
+                        <label for="eventdate">Event Date</label>
+                        <input class="form-control" id="eventdate" type="text" placeholder="2017/08"/>
+                    </div>
+                    <input type="button" id="insert" value="Insert" class="btn btn-default" />
+                    <input type="button" id="update" value="Update" class="btn btn-default" />
+                    <input type="button" id="delete" value="Delete" class="btn btn-default" />
+                </form>
+            </div>
+        </div>
+        <div class="row">
+           <div class="col-md-6 col-md-offset-3">
+               <div id="msg"></div>
+           </div>
+        </div>
+    </div>
+
+
+
+
+   
+    @*<form>
         <table border="1">
             <tr>
                 <td>Enquiry ID :</td>
@@ -48,7 +92,14 @@
         </table>
         <br />
         <div id="msg"></div>
-    </form>
+    </form>*@
+
+
+
+
+
+
+
 
     <script type="text/javascript">
         $(document).ready(function () {
