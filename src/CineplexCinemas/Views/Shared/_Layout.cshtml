@@ -104,6 +104,9 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script>
+            function moviePopup() {
+                document.getElementById('seatsLeft').hidden = false;
+            }
             function changeNumber() {
                 var ticketOptionAdult = document.getElementById('numberOfAdults');
                 var ticketOptionConc = document.getElementById('numberOfConc');
