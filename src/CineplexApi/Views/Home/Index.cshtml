@@ -11,37 +11,30 @@
     <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <h1>Movie Manager</h1>
+    <h1>Cineplex Cinemas Customer Event Manager - Admin</h1>
     <form>
         <table border="1">
             <tr>
-                <td>Movie ID :</td>
+                <td>Enquiry ID :</td>
                 <td>
-                    <select id="movieid"></select>
+                    <select id="enquiryid"></select>
                     OR
-                    <input id="newmovieid" type="text" />
+                    <input id="newenquiryid" type="text" />
                 </td>
             </tr>
             <tr>
-                <td>Title :</td>
-                <td><input id="title" type="text" /></td>
+                <td>Email :</td>
+                <td><input id="email" type="text" /></td>
             </tr>
             <tr>
-                <td>Short Description :</td>
-                <td><input id="shortdesc" type="text" /></td>
+                <td>Event Message :</td>
+                <td><input id="eventmsg" type="text" /></td>
             </tr>
             <tr>
-                <td>Long Description :</td>
-                <td><input id="longdesc" type="text" /></td>
+                <td>Event Date :</td>
+                <td><input id="eventdate" type="text" /></td>
             </tr>
-            <tr>
-                <td>Image URL :</td>
-                <td><input id="imageurl" type="text" /></td>
-            </tr>
-            <tr>
-                <td>Price :</td>
-                <td><input id="price" type="text" /></td>
-            </tr>
+
             <tr>
                 <td colspan="2">
                     <input type="button" id="insert"
@@ -61,13 +54,13 @@
         $(document).ready(function () {
             //Filling the dropdown list with MovieIDs
             var options = {};
-            options.url = "http://localhost:15956/api/moviemanager";
+            options.url = "http://localhost:15956/api/customerevent";
             options.type = "GET";
             options.dataType = "json";
             options.success = function (data) {
                 data.forEach(function (element) {
-                    $("#movieid").append("<option>"
-                    + element.movieID + "</option>");
+                    $("#enquiryid").append("<option>"
+                    + element.enquiryID + "</option>");
                 });
             };
             options.error = function () {
@@ -76,18 +69,16 @@
             $.ajax(options);
 
             //getting movie's information
-            $("#movieid").change(function () {
+            $("#enquiryid").change(function () {
                 var options = {};
-                options.url = "http://localhost:15956/api/moviemanager/" +
-                               $("#movieid").val();
+                options.url = "http://localhost:15956/api/customerevent" +
+                               $("#enquiryid").val();
                 options.type = "GET";
                 options.dataType = "json";
                 options.success = function (data) {
-                    $("#title").val(data.title);
-                    $("#shortdesc").val(data.shortDescription);
-                    $("#longdesc").val(data.longDescription);
-                    $("#imageurl").val(data.imageUrl);
-                    $("#price").val(data.price);
+                    $("#email").val(data.email);
+                    $("#eventmsg").val(data.eventMessage);
+                    $("#eventdate").val(data.eventDate);
                 };
                 options.error = function (a, b, c) {
                     alert(a.responseText);
@@ -99,16 +90,14 @@
             //adding a new movie
             $("#insert").click(function () {
                 var options = {};
-                options.url = "http://localhost:15956/api/moviemanager/";
+                options.url = "http://localhost:15956/api/customerevent";
                 options.type = "POST";
 
                 var obj = {};
-                obj.MovieID = $("#newmovieid").val();
-                obj.Title = $("#title").val();
-                obj.ShortDescription = $("#shortdesc").val();
-                obj.LongDescription = $("#longdesc").val();
-                obj.ImageUrl = $("#imageurl").val();
-                obj.Price = $("#price").val();
+                obj.EnquiryID = $("#newenquiryid").val();
+                obj.Email = $("#email").val();
+                obj.Message = $("#eventmsg").val();
+                obj.EventDate = $("#eventdate").val();
 
                 options.data = JSON.stringify(obj);
                 options.contentType = "application/json";
@@ -125,17 +114,15 @@
             //modifying movie
             $("#update").click(function () {
                 var options = {};
-                options.url = "http://localhost:15956/api/moviemanager/"
-                              + $("#movieid").val();
+                options.url = "http://localhost:15956/api/customerevent/"
+                              + $("#enquiryid").val();
                 options.type = "PUT";
 
                 var obj = {};
-                obj.MovieID = $("#movieid").val();
-                obj.Title = $("#title").val();
-                obj.ShortDescription = $("#shortdesc").val();
-                obj.LongDescription = $("#longdesc").val();
-                obj.ImageUrl = $("#imageurl").val();
-                obj.Price = $("#price").val();
+                obj.EnquiryID = $("#enquiryid").val();
+                obj.Email = $("#email").val();
+                obj.Message = $("#eventmsg").val();
+                obj.EventDate = $("#eventdate").val();
 
                 options.data = JSON.stringify(obj);
                 options.contentType = "application/json";
@@ -153,8 +140,8 @@
             //deleting movie
             $("#delete").click(function () {
                 var options = {};
-                options.url = "http://localhost:15956/api/moviemanager/"
-                              + $("#movieid").val();
+                options.url = "http://localhost:15956/api/customerevent/"
+                              + $("#enquiryid").val();
                 options.type = "DELETE";
                 options.dataType = "html";
                 options.success = function (msg) {
