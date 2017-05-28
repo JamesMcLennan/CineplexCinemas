@@ -200,12 +200,27 @@ namespace CineplexCinemas.Controllers
                 if (ModelState.IsValid)
                 {
                     _context.Add(newBooking);
+                    reduceSeatNumbers(newBooking.sessionId, newBooking.numberOfAdults, newBooking.numberOfConc);
                     await _context.SaveChangesAsync();
                 }
             }
             cartList.Clear();
             HttpContext.Session.SetSession("cartItem", cartList);
             return RedirectToAction("Index", "Cart");
+        }
+
+        private void reduceSeatNumbers(int sessionId, int numberOfAdults, int numberOfConc)
+        {
+            var sessionList = _context.Session.ToList();
+            
+            foreach(var item in sessionList)
+            {
+                if(item.SessionId.Equals(sessionId))
+                {
+                    item.SeatsAvailable = item.SeatsTotal - (numberOfAdults + numberOfConc);
+                }
+            }
+
         }
     }
 }
