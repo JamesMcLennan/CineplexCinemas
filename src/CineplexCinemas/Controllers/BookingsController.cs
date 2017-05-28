@@ -22,6 +22,8 @@ namespace CineplexCinemas.Controllers
         private int movieId;
         private int sessionId;
 
+        private List<int> bookingId = new List<int>();
+
         public BookingsController(CineplexDatabaseContext context)
         {
             _context = context;    
@@ -186,6 +188,11 @@ namespace CineplexCinemas.Controllers
         
         public async Task<IActionResult> finaliseBookings()
         {
+            var bookingList = HttpContext.Session.GetSession<int>("bookingSession");
+            if(bookingList == null)
+            {
+                bookingList = new List<int>();
+            }
             var cartList = HttpContext.Session.GetSession<cartItem>("cartItem");
             foreach (var booking in cartList)
             {
@@ -200,13 +207,17 @@ namespace CineplexCinemas.Controllers
                 if (ModelState.IsValid)
                 {
                     _context.Add(newBooking);
+                    var List =_context.Booking.ToList();
+                    var last = List.Last();
+                    bookingList.Add(last.BookingId+1);
                     reduceSeatNumbers(newBooking.sessionId, newBooking.numberOfAdults, newBooking.numberOfConc);
                     await _context.SaveChangesAsync();
                 }
             }
             cartList.Clear();
             HttpContext.Session.SetSession("cartItem", cartList);
-            return RedirectToAction("Index", "Cart");
+            HttpContext.Session.SetBookingSession("bookingSession", bookingList);
+            return RedirectToAction("confirmationPage");
         }
 
         private void reduceSeatNumbers(int sessionId, int numberOfAdults, int numberOfConc)
@@ -221,6 +232,75 @@ namespace CineplexCinemas.Controllers
                 }
             }
 
+        }
+        public IActionResult confirmationPage()
+        {
+            var bookingList = HttpContext.Session.GetSession<int>("bookingSession");
+            ViewBag.bookingIds = bookingList;
+            List<Booking> bookingDetails = new List<Booking>();
+            List<Session> sessionList = new List<Session>();
+            List<Cineplex> cineplexList = new List<Cineplex>();
+            foreach(var bookingNumber in bookingList)
+            {
+                var details = getBookings(bookingNumber);
+                if(details != null)
+                {
+                    bookingDetails.Add(details);
+                }
+                var sessionDetails = getSession(details.sessionId);
+                if(sessionDetails != null)
+                {
+                    sessionList.Add(sessionDetails);
+                }
+                var cineplexDetails = getCineplex(details.cineplxId);
+                if(cineplexDetails != null)
+                {
+                    cineplexList.Add(cineplexDetails);
+                }
+            }
+            ViewBag.bookingDetails = bookingDetails;
+            ViewBag.sessionList = sessionList;
+            ViewBag.cineplexList = cineplexList;
+            return View();
+        }
+
+        private Booking getBookings(int id)
+        {
+            var bookingsList = _context.Booking.ToList();
+            foreach(var booking in bookingsList)
+            {
+                if(booking.BookingId.Equals(id))
+                {
+                    return booking;
+                }
+            }
+            return null;
+        }
+
+        private Session getSession(int id)
+        {
+            var sessionsList = _context.Session.ToList();
+            foreach (var session in sessionsList)
+            {
+                if (session.SessionId.Equals(id))
+                {
+                    return session;
+                }
+            }
+            return null;
+        }
+
+        private Cineplex getCineplex(int id)
+        {
+            var cineplexList = _context.Cineplex.ToList();
+            foreach (var cineplex in cineplexList)
+            {
+                if (cineplex.CineplexId.Equals(id))
+                {
+                    return cineplex;
+                }
+            }
+            return null;
         }
     }
 }

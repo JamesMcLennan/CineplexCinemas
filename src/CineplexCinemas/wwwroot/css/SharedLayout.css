@@ -258,3 +258,16 @@ Booking SECTION
 .nameField {
     color:black;
 }
+
+#confirmationPage{
+    padding: 20px;
+}
+
+#confirmationPage b{
+    color: red;
+}
+#confirmationPage h2{
+    font-family: 'Lobster', cursive;
+    color: red;
+    text-align:center;
+}
