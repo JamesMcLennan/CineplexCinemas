@@ -23,33 +23,29 @@
             </div>
         </div>
     </div>
+    @Html.ActionLink("Wonder Woman", "Sessions", new { movieName = "Wonder Woman" }, new { @class = "button" })<br />
     <div class="col-md-4">
         <div id="myCarousel" class="carousel" data-ride="carousel" data-interval="6000" data-pause="false">
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <h3>Star Wars - The Last Jedi (M)</h3>
-                    <p>Session Times: </p>
-                    <button>Book Now!</button>
+                    @Html.ActionLink("Book Now!", "Sessions", new { movieName = "Star Wars: The Last Jedi" }, new { @class = "button" })<br />
                 </div>
                 <div class="item">
                     <h3>Coco (PG)</h3>
-                    <p>Session Times: </p>
-                    <button>Book Now!</button>
+                    @Html.ActionLink("Book Now!", "Sessions", new { movieName = "Coco" }, new { @class = "button" })<br />
                 </div>
                 <div class="item">
                     <h3>Guardians of the Galaxy, Volume 2 (M)</h3>
-                    <p>Session Times: </p>
-                    <button>Book Now!</button>
+                    @Html.ActionLink("Book Now!", "Sessions", new { movieName = "Guardians of the Galaxy: Volume 2" }, new { @class = "button" })<br />
                 </div>
                 <div class="item">
                     <h3>Despicable Me 3 (PG)</h3>
-                    <p>Session Times: </p>
-                    <button>Book Now!</button>
+                    @Html.ActionLink("Book Now!", "Sessions", new { movieName = "Despicable Me 3" }, new { @class = "button" })<br />
                 </div>
                 <div class="item">
                     <h3>Wonder Woman (M)</h3>
-                    <p>Session Times: </p>
-                    <button>Book Now!</button>
+                    @Html.ActionLink("Book Now!", "Sessions", new { movieName = "Wonder Woman" }, new { @class = "button" })<br />
                 </div>
             </div>
         </div>
