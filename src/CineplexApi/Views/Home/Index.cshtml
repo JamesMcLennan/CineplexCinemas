@@ -99,6 +99,7 @@
                 obj.Message = $("#eventmsg").val();
                 obj.EventDate = $("#eventdate").val();
 
+                console.log(obj);
                 options.data = JSON.stringify(obj);
                 options.contentType = "application/json";
                 options.dataType = "html";
