@@ -37,8 +37,8 @@
                             }@time
                         </td>
                         <td>
-                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId }, new { @class = "button", onmouseover="moviePopup()" })
-                            <span id="seatsLeft" >Seats Available: @item.Session.SeatsAvailable/@item.Session.SeatsTotal</span>
+                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId }, new { @class = "button" })
+                            <span id="seatsLeft">Seats Available: @item.Session.SeatsAvailable/@item.Session.SeatsTotal</span>
                         </td>
                     </tr>
                }
@@ -62,9 +62,8 @@
                             }@time
                         </td>
                         <td>
-                            <div class="tooltip">@Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId }, new { @class = "button" })
-                            <span class="tooltiptext">Seats Available: @item.Session.SeatsAvailable/@item.Session.SeatsTotal</span>
-                        </div>
+                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId }, new { @class = "button" })
+                            <span id="seatsLeft">Seats Available: @item.Session.SeatsAvailable/@item.Session.SeatsTotal</span>
                         </td>
                     </tr>
                 }

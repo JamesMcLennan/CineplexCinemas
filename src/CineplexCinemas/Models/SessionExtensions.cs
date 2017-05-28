@@ -13,6 +13,11 @@ namespace System
             session.SetString(key, JsonConvert.SerializeObject(value));
         }
 
+        public static void SetBookingSession(this ISession session, string key, List<int> value)
+        {
+            session.SetString(key, JsonConvert.SerializeObject(value));
+        }
+
         public static List<T> GetSession<T>(this ISession session, string key)
         {
             var value = session.GetString(key);

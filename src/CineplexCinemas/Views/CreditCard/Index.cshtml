@@ -13,11 +13,10 @@
 
 <script src="~/js/cardexpiry.js"></script>
 
-<form asp-controller="Movies" asp-action="Index" onsubmit="return expiryChecker()">
+<form asp-controller="Bookings" asp-action="finaliseBookings" onsubmit="return expiryChecker()">
 
     <div class="form-horizontal">
-        <h4>Credit Card Details</h4>
-        <hr />
+        <h4>Credit Card Details for @ViewData["name"]</h4>
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
@@ -96,17 +95,6 @@
             </div>
         </div>
 </form>
-
-@*<script>
-    var card = new Card({
-        form: 'form',
-        container: '.card-wrapper',
-
-        formSelectors: {
-            nameInput: 'input[name="first-name"], input[name="last-name"]'
-        }
-    });
-</script>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
