@@ -46,10 +46,9 @@ namespace CineplexApi.Controllers
         {
             using (CineplexDatabaseContext db = new CineplexDatabaseContext())
             {
-
                 db.Enquiries.Add(obj);
                 db.SaveChanges();
-                return "Movie added successfully!";
+                return "Enquiry added successfully!";
             }
         }
 
@@ -62,7 +61,7 @@ namespace CineplexApi.Controllers
             {
                 db.Entry(obj).State = EntityState.Modified;
                 db.SaveChanges();
-                return "Movie modified successfully!";
+                return "Enquiry modified successfully!";
             }
         }
 
@@ -76,7 +75,7 @@ namespace CineplexApi.Controllers
                     i => i.EnquiryID == id).SingleOrDefault();
                 db.Enquiries.Remove(obj);
                 db.SaveChanges();
-                return "Movie deleted successfully!";
+                return "Enquiry deleted successfully!";
             }
         }
     }
