@@ -8,9 +8,10 @@ using CineplexCinemas.Models;
 namespace CineplexCinemas.Migrations
 {
     [DbContext(typeof(CineplexDatabaseContext))]
-    partial class CineplexDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20170526005314_updateBooking3")]
+    partial class updateBooking3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -21,19 +22,21 @@ namespace CineplexCinemas.Migrations
                     b.Property<int>("BookingId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("cineplxId");
+                    b.Property<int?>("SessionDetailsCineplexId");
+
+                    b.Property<int?>("SessionDetailsMovieId");
+
+                    b.Property<int?>("SessionDetailsSessionId");
 
                     b.Property<string>("customerName");
-
-                    b.Property<int>("movieId");
 
                     b.Property<int>("numberOfAdults");
 
                     b.Property<int>("numberOfConc");
 
-                    b.Property<int>("sessionId");
-
                     b.HasKey("BookingId");
+
+                    b.HasIndex("SessionDetailsCineplexId", "SessionDetailsMovieId", "SessionDetailsSessionId");
 
                     b.ToTable("Booking");
                 });
@@ -166,6 +169,13 @@ namespace CineplexCinemas.Migrations
                         .HasName("IX_Session_filmMovieId");
 
                     b.ToTable("Session");
+                });
+
+            modelBuilder.Entity("CineplexCinemas.Models.Booking", b =>
+                {
+                    b.HasOne("CineplexCinemas.Models.CineplexMovie", "SessionDetails")
+                        .WithMany()
+                        .HasForeignKey("SessionDetailsCineplexId", "SessionDetailsMovieId", "SessionDetailsSessionId");
                 });
 
             modelBuilder.Entity("CineplexCinemas.Models.CineplexMovie", b =>

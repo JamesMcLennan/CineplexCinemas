@@ -20,6 +20,7 @@ namespace CineplexApi.Controllers
         [HttpGet]
         public List<Enquiry> Get()
         {
+            // Assign EnquiryID according to the number.
             using (CineplexDatabaseContext db = new CineplexDatabaseContext())
             {
                 return db.Enquiries.OrderBy(
@@ -32,6 +33,7 @@ namespace CineplexApi.Controllers
         [HttpGet("{id}")]
         public Enquiry Get(int id)
         {
+            // Get Enquiry table's columns from the database.
             using (CineplexDatabaseContext db = new CineplexDatabaseContext())
             {
                 return db.Enquiries.Where(
@@ -40,28 +42,16 @@ namespace CineplexApi.Controllers
 
         }
 
-        // POST api/values
-        [HttpPost]
-        public string Post([FromBody]Enquiry obj)
-        {
-            using (CineplexDatabaseContext db = new CineplexDatabaseContext())
-            {
-                db.Enquiries.Add(obj);
-                db.SaveChanges();
-                return "Enquiry added successfully!";
-            }
-        }
-
         // PUT api/values/5
         [HttpPut("{id}")]
         public string Put(int id, [FromBody]Enquiry obj)
         {
-
+            // Update changes into database.
             using (CineplexDatabaseContext db = new CineplexDatabaseContext())
             {
                 db.Entry(obj).State = EntityState.Modified;
                 db.SaveChanges();
-                return "Enquiry modified successfully!";
+                return "Enquiry updated successfully!";
             }
         }
 
@@ -69,6 +59,7 @@ namespace CineplexApi.Controllers
         [HttpDelete("{id}")]
         public string Delete(int id)
         {
+            // Delete selected row in the database.
             using (CineplexDatabaseContext db = new CineplexDatabaseContext())
             {
                 var obj = db.Enquiries.Where(

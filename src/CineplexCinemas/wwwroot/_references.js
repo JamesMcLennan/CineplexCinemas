@@ -1,5 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="js/jquery.datetimepicker.full.js" />
+/// <reference path="js/card.js" />
+/// <reference path="js/cardexpiry.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/datetimepicker/build/jquery.datetimepicker.full.min.js" />

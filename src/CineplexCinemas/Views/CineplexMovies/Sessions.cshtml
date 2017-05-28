@@ -5,7 +5,7 @@
     var previousCineplex = "None";
     DateTime DayToDisplay = new DateTime(1996, 05, 10);
 }
-<table class="table borderless">
+<table class="table borderless panel panel-default" id="sessionTimes">
     <tbody>
         @foreach (var item in Model)
         {
@@ -20,48 +20,64 @@
 
                    <tr>
                         <td>
-                            <h3>@previousCineplex</h3>
+                            <h2>@previousCineplex Session Times</h2>
                         </td>
                    </tr>
                 DayToDisplay = item.Session.SessionDateTime;
-                    <tr>
-                        <td>
+                <tr>
+                        <td id="dateOfSession">
                             <h3>@DayToDisplay.DayOfWeek, @DayToDisplay.Day/@DayToDisplay.Month/@DayToDisplay.Year</h3>
                         </td>
+                    <td id="dateOfSession"></td>
                     </tr>
                     <tr>
-                        <td>
+                        <td id="contentsOfSession">
                             @item.Session.FilmMovie.Title |
                             @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
                             }@time
+                        </td>
+                        <td>
+                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId }, new { @class = "button" })
+                            <span id="seatsLeft">Seats Available: @item.Session.SeatsAvailable/@item.Session.SeatsTotal</span>
                         </td>
                     </tr>
                }
-               else
-               {
-               if (!item.Session.SessionDateTime.DayOfWeek.Equals(DayToDisplay.DayOfWeek))
-               {
-                    DayToDisplay = item.Session.SessionDateTime;
+                                else
+                                {
+                                    if (!item.Session.SessionDateTime.DayOfWeek.Equals(DayToDisplay.DayOfWeek))
+                                    {
+                                        DayToDisplay = item.Session.SessionDateTime;
                     <tr>
-                        <td>
+                        <td id="dateOfSession">
                             <h3>@DayToDisplay.DayOfWeek, @DayToDisplay.Day/@DayToDisplay.Month/@DayToDisplay.Year</h3>
+                        </td>
+                        <td id="dateOfSession">
+
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td id="contentsOfSession">
                             @item.Session.FilmMovie.Title |
                             @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
                             }@time
+                        </td>
+                        <td>
+                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId }, new { @class = "button" })
+                            <span id="seatsLeft">Seats Available: @item.Session.SeatsAvailable/@item.Session.SeatsTotal</span>
                         </td>
                     </tr>
                 }
                 else
                 {
                     <tr>
-                        <td>
+                        <td id="contentsOfSession">
                             @item.Session.FilmMovie.Title |
                             @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
                             }@time
+                        </td>
+                        <td>
+                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId }, new { @class = "button" })
+                            <span id="seatsLeft">Seats Available: @item.Session.SeatsAvailable/@item.Session.SeatsTotal</span>
                         </td>
                     </tr>
                 }
