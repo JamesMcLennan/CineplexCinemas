@@ -136,13 +136,104 @@ Cinemas SECTION
     color: red;
 }
 
+#cinemaDescrip {
+    margin:40px;
+    margin-bottom:20px;
+}
+/****
+Movies SECTION
+***/
+
+#Movies {
+    text-align: center;
+}
+
+#Movies h2 {
+    font-family: 'Lobster', cursive;
+    color: red;
+}
+#movieDescrip {
+    margin:40px;
+    margin-bottom:20px;
+}
 /******
 Sessions SECTION
 ******/
 
+#filterSessions {
+    text-align: center;
+    padding:20px;
+}
+
+#filterItemsList h2{
+    font-family: 'Lobster', cursive;
+    color: red;
+}
+
+
 .table.borderless td{
     border-top: 0;
     height: 100px;
+}
+
+#sessionTimes {
+}
+
+#sessionTimes h2{
+    font-family: 'Lobster', cursive;
+    color: red;
+    text-align:center;
+}
+
+#sessionTimes tr td{
+    height:10px;
+}
+
+#sessionTimes #dateOfSession {
+    background-color: #5e6064;
+    padding-left:50px;
+}
+#sessionTimes #contentsOfSession {
+    padding-left: 100px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
 /******
