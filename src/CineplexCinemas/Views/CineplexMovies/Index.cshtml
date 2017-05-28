@@ -1,29 +1,21 @@
-@model IEnumerable<Cineplex.Models.CineplexMovie>
+@model IEnumerable<CineplexCinemas.Models.CineplexMovie>
 
 @{
     ViewData["Title"] = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CineplexId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CineplexId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CineplexId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="col-md-12">
+    <div class="col-md-6">
+        <h2>Search by Cinema</h2>
+        @Html.ActionLink("St Kilda", "Sessions", new { cinemaName = "St Kilda" })<br />
+        @Html.ActionLink("Fitzroy", "Sessions", new { cinemaName = "Fitzroy" })<br />
+        @Html.ActionLink("Melbourne CBD", "Sessions", new { cinemaName = "Melbourne CBD" })<br />
+        @Html.ActionLink("Sunshine", "Sessions", new { cinemaName = "Sunshine" })<br />
+        @Html.ActionLink("Lilydale", "Sessions", new { cinemaName = "Lilydale" })<br />
+    </div>
+    <div class="col-md-6">
+        <h2>Search by Movie</h2>
+        @Html.ActionLink("The Matrix", "Sessions", new { movieName = "The Matrix" })<br />
+        @Html.ActionLink("The Matrix Reloaded", "Sessions", new { movieName = "The Matrix Reloaded" })<br />
+        @Html.ActionLink("The Matrix Revolution", "Sessions", new { movieName = "The Matrix Revolution" })<br />
+    </div>
+</div>

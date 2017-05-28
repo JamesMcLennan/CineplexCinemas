@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Cineplex.Models;
 using CineplexCinemas.Models;
 
 namespace CineplexCinemas.Controllers
 {
     public class EnquiriesController : Controller
     {
-        private readonly CineplexCinemasContext _context;
+        private readonly CineplexDatabaseContext _context;
 
-        public EnquiriesController(CineplexCinemasContext context)
+        public EnquiriesController(CineplexDatabaseContext context)
         {
             _context = context;    
         }
@@ -23,6 +22,18 @@ namespace CineplexCinemas.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Enquiry.ToListAsync());
+        }
+
+        // GET: Events
+        public IActionResult Events()
+        {
+            return View();
+        }
+
+        // GET: Success Message
+        public IActionResult Success()
+        {
+            return View();
         }
 
         // GET: Enquiries/Details/5
@@ -41,13 +52,7 @@ namespace CineplexCinemas.Controllers
 
             return View(enquiry);
         }
-
-        // GET: Enquiries/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
+        
         // POST: Enquiries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -59,7 +64,7 @@ namespace CineplexCinemas.Controllers
             {
                 _context.Add(enquiry);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Success");
             }
             return View(enquiry);
         }

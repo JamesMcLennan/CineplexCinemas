@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using CineplexCinemas.Models;
 
 namespace CineplexCinemas.Controllers
 {
@@ -22,7 +24,7 @@ namespace CineplexCinemas.Controllers
 
         public IActionResult Events()
         {
-            ViewData["Message"] = "Your Events page.";
+            ViewData["Message"] = "Private Hire";
 
             return View();
         }

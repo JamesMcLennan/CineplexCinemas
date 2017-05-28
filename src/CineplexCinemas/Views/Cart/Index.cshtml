@@ -1,0 +1,89 @@
+﻿<h1>Shopping Cart</h1>
+
+
+@if (ViewData["LocationId"] != null)
+{
+    <p>
+        Item 1:
+        @ViewData["LocationId"]
+        @ViewData["MovieId"]
+        @ViewData["SessionID"]
+        @ViewData["Name"]
+        @ViewData["noAdults"]
+        @ViewData["noConcession"]
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
+        <br />
+    </p>
+}
+@if (ViewData["LocationId1"] != null)
+{
+    <p>
+        Item 2:
+        @ViewData["LocationId1"]
+        @ViewData["MovieId1"]
+        @ViewData["SessionID1"]
+        @ViewData["Name1"]
+        @ViewData["noAdults1"]
+        @ViewData["noConcession1"]
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
+        <br />
+    </p>
+}
+@if (ViewData["LocationId2"] != null)
+{
+    <p>
+        Item 3:
+        @ViewData["LocationId2"]
+        @ViewData["MovieId2"]
+        @ViewData["SessionID2"]
+        @ViewData["Name2"]
+        @ViewData["noAdults2"]
+        @ViewData["noConcession2"]
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
+        <br />
+    </p>
+}
+@if (ViewData["LocationId3"] != null)
+{   
+    <p>
+        Item 4:
+        @ViewData["LocationId3"]
+        @ViewData["MovieId3"]
+        @ViewData["SessionID3"]
+        @ViewData["Name3"]
+        @ViewData["noAdults3"]
+        @ViewData["noConcession3"]
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
+        <br />
+    </p>
+}
+@if (ViewData["LocationId4"] != null)
+{
+    <p>
+        Item 5:
+        @ViewData["LocationId4"]
+        @ViewData["MovieId4"]
+        @ViewData["SessionID4"]
+        @ViewData["Name4"]
+        @ViewData["noAdults4"]
+        @ViewData["noConcession4"]
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
+    </p>
+}
+@if (ViewData["LocationId"] != null)
+{
+    <p>
+        @ViewData["WarningTime"]
+    </p>
+}
+else
+{  
+    <p>
+        @ViewData["EmptyCart"]
+    </p>
+}
+<form asp-controller="Bookings" asp-action="finaliseBookings">
+    <div>
+        <input type="submit" value="Book Now" class="button" />
+    </div>
+</form>
