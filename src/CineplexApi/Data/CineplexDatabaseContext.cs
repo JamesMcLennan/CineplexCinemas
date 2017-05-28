@@ -10,6 +10,7 @@ namespace CineplexApi.Data
 {
     public class CineplexDatabaseContext : DbContext
     {
+        // Set Enquiry db to read data
         public DbSet<Enquiry> Enquiries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

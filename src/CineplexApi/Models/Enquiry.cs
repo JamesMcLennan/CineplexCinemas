@@ -10,6 +10,11 @@ namespace CineplexApi.Models
     [Table("Enquiry")]
     public class Enquiry
     {
+        /**
+         * Delcare variables
+         * Note : In order to read data from database,
+         * variable names should match database column names
+         */
         [Key]
         public int EnquiryID { get; set; }
         [Required]
