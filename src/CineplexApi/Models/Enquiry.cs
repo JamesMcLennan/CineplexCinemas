@@ -17,5 +17,6 @@ namespace CineplexApi.Models
         public string Email { get; set; }
         [DataType(DataType.MultilineText)]
         public string Message { get; set; }
+        public DateTime EventDate { get; set; }
     }
 }
