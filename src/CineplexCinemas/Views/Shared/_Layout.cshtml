@@ -23,72 +23,78 @@
 </head>
 <body>
     <div id="Title">
-        <h1>Cineplex</h1> 
+        <h1>Cineplex</h1>
         <h4>Cinema</h4>
     </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="navbar navbar-inverse">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="navbar-collapse collapse">
-                            <ul class="nav nav-pills pull-left">
-                                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                                <li><a asp-area="" asp-controller="Movies" asp-action="Index">Movies</a></li>
-                                <li><a asp-area="" asp-controller="Cineplexes" asp-action="Index">Cinemas</a></li>
-                                <li><a asp-area="" asp-controller="Enquiries" asp-action="Events">Events</a></li>
-                                <li><a asp-area="" asp-controller="CineplexMovies" asp-action="Index">Sessions</a></li>
-                                <li><a asp-area="" asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
-                            </ul>
-                            @await Html.PartialAsync("_LoginPartial")
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav nav-pills pull-left">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-area="" asp-controller="Movies" asp-action="Index">Movies</a></li>
+                            <li><a asp-area="" asp-controller="Cineplexes" asp-action="Index">Cinemas</a></li>
+                            <li><a asp-area="" asp-controller="Enquiries" asp-action="Events">Events</a></li>
+                            <li><a asp-area="" asp-controller="CineplexMovies" asp-action="Index">Sessions</a></li>
+                            <li><a asp-area="" asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+                        </ul>
+                        @await Html.PartialAsync("_LoginPartial")
                     </div>
                 </div>
-             </div>
+            </div>
         </div>
+    </div>
     <div class="container body-content">
         <hr class="style" />
         @RenderBody()
         <hr class="style" />
         <footer>
             <div id="footerLinks">
-                <div class="col-md-3">
-                    <h4>Cinema Links 1</h4>
+                <div class="col-md-2">
+                    <h4>Home</h4>
                     <ul>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 1</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 2</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 3</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <h4>Cinema Links 2</h4>
+                <div class="col-md-2">
+                    <h4>Movies</h4>
                     <ul>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 1</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 2</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 3</a></li>
+                        <li><a asp-area="" asp-controller="Movies" asp-action="Index">Movies</a></li>
+                        <li><a asp-area="" asp-controller="MovieComingSoon" asp-action="Index">Movies Coming Soon</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <h4>Cinema Links 3</h4>
+
+                <div class="col-md-2">
+                    <h4>Booking</h4>
                     <ul>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 1</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 2</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 3</a></li>
+                        <li><a asp-area="" asp-controller="Bookings" asp-action="Index">Booking</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <h4>Cinema Links 4</h4>
+                <div class="col-md-2">
+                    <h4>Cineplexes</h4>
                     <ul>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 1</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 2</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Link 3</a></li>
+                        <li><a asp-area="" asp-controller="Cineplexes" asp-action="Index">Cineplexes</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h4>Cineplex Movies</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="CineplexMovies" asp-action="Index">Cineplex Movies</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h4>Enquiry</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Enquiries" asp-action="Events">Event</a></li>
                     </ul>
                 </div>
             </div>
@@ -133,7 +139,7 @@
                     document.getElementById('total').innerHTML = "You cannot purchase more than 5 tickets per session!";
                     document.getElementById('addToCart').disabled = true;
                 }
-                
+
             }
 
             function updateItemsAdded() {
