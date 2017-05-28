@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Cineplex.Models
+namespace CineplexCinemas.Models
 {
     public partial class Enquiry
     {
-        [Key]
         public int EnquiryId { get; set; }
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Message { get; set; }
     }
 }
