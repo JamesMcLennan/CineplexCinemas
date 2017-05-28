@@ -271,3 +271,17 @@ Booking SECTION
     color: red;
     text-align:center;
 }
+
+/******
+Cart SECTION
+*/
+
+#cart {
+    padding: 20px;
+}
+
+#cart h2 {
+    font-family: 'Lobster', cursive;
+    color: red;
+    text-align:center;
+}
