@@ -40,18 +40,6 @@ namespace CineplexApi.Controllers
 
         }
 
-        // POST api/values
-        //[HttpPost]
-        //public string Post([FromBody]Enquiry obj)
-        //{
-        //    using (CineplexDatabaseContext db = new CineplexDatabaseContext())
-        //    {
-        //        db.Enquiries.Add(obj);
-        //        db.SaveChanges();
-        //        return "Enquiry added successfully!";
-        //    }
-        //}
-
         // PUT api/values/5
         [HttpPut("{id}")]
         public string Put(int id, [FromBody]Enquiry obj)
@@ -61,7 +49,7 @@ namespace CineplexApi.Controllers
             {
                 db.Entry(obj).State = EntityState.Modified;
                 db.SaveChanges();
-                return "Enquiry modified successfully!";
+                return "Enquiry updated successfully!";
             }
         }
 

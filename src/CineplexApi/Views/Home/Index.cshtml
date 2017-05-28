@@ -15,31 +15,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h1>Cineplex Cinemas Customer Event Manager - Admin</h1>
+                <h2>Customer Enquiry Manager - Admin</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <form>
                     <div class="form-group">
-                        <label for="newenquiryid">Enquiry ID</label>
+                        <label for="enquiryid">Enquiry ID</label>
                         <select class="form-control" id="enquiryid"></select>
-                        @*<b>OR</b>
-                        <input class="form-control" id="newenquiryid" type="text" placeholder="10" />*@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input class="form-control" id="email" type="text" placeholder="s3558745@student.rmit.edu.au"/>
+                        <input class="form-control" id="email" type="text" />
                     </div>
                     <div class="form-group">
                         <label for="eventmsg">Event Message</label>
-                        <input class="form-control" id="eventmsg" type="text" placeholder="WDT course end Celebration" />
+                        <input class="form-control" id="eventmsg" type="text" />
                     </div>
                     <div class="form-group">
                         <label for="eventdate">Event Date</label>
-                        <input class="form-control" id="eventdate" type="text" placeholder="2017-08-10 18:30"/>
+                        <input class="form-control" id="eventdate" type="text" />
                     </div>
-                    @*<input type="button" id="insert" value="Insert" class="btn btn-default" />*@
                     <input type="button" id="update" value="Update" class="btn btn-default" />
                     <input type="button" id="delete" value="Delete" class="btn btn-default" />
                 </form>
@@ -73,13 +70,13 @@
             //getting event's information
             $("#enquiryid").change(function () {
                 var options = {};
-                options.url = "http://localhost:15956/api/customerevent" +
+                options.url = "http://localhost:15956/api/customerevent/" + 
                                $("#enquiryid").val();
                 options.type = "GET";
                 options.dataType = "json";
                 options.success = function (data) {
                     $("#email").val(data.email);
-                    $("#eventmsg").val(data.eventMessage);
+                    $("#eventmsg").val(data.message);
                     $("#eventdate").val(data.eventDate);
                 };
                 options.error = function (a, b, c) {
@@ -88,31 +85,6 @@
                 };
                 $.ajax(options);
             });
-
-            ////adding a new event
-            //$("#insert").click(function () {
-            //    var options = {};
-            //    options.url = "http://localhost:15956/api/customerevent";
-            //    options.type = "POST";
-
-            //    var obj = {};
-            //    obj.EnquiryID = $("#newenquiryid").val();
-            //    obj.Email = $("#email").val();
-            //    obj.Message = $("#eventmsg").val();
-            //    obj.EventDate = $("#eventdate").val();
-
-            //    console.log(obj);
-            //    options.data = JSON.stringify(obj);
-            //    options.contentType = "application/json";
-            //    options.dataType = "html";
-            //    options.success = function (msg) {
-            //        $("#msg").html(msg);
-            //    };
-            //    options.error = function () {
-            //        $("#msg").html("Error while calling the Web API!");
-            //    };
-            //    $.ajax(options);
-            //});
 
             //modifying Event
             $("#update").click(function () {
