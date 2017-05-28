@@ -11,7 +11,7 @@
         @ViewData["Name"]
         @ViewData["noAdults"]
         @ViewData["noConcession"]
-        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] }, new { onclick = "updateItemsRemoved();" })
         <br />
     </p>
 }
@@ -25,7 +25,7 @@
         @ViewData["Name1"]
         @ViewData["noAdults1"]
         @ViewData["noConcession1"]
-        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] }, new { onclick = "updateItemsRemoved();" })
         <br />
     </p>
 }
@@ -39,7 +39,7 @@
         @ViewData["Name2"]
         @ViewData["noAdults2"]
         @ViewData["noConcession2"]
-        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] }, new { onclick = "updateItemsRemoved();" })
         <br />
     </p>
 }
@@ -53,7 +53,7 @@
         @ViewData["Name3"]
         @ViewData["noAdults3"]
         @ViewData["noConcession3"]
-        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] }, new { onclick = "updateItemsRemoved();" })
         <br />
     </p>
 }
@@ -67,7 +67,7 @@
         @ViewData["Name4"]
         @ViewData["noAdults4"]
         @ViewData["noConcession4"]
-        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] })
+        @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] }, new { onclick = "updateItemsRemoved();"})
     </p>
 }
 @if (ViewData["LocationId"] != null)
@@ -87,3 +87,5 @@ else
         <input type="submit" value="Book Now" class="button" />
     </div>
 </form>
+
+<p id="cartTotal"></p>

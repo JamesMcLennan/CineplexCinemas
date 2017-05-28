@@ -22,8 +22,6 @@ namespace CineplexCinemas.Controllers
         private int movieId;
         private int sessionId;
 
-        public int itemCounter = 0;
-
         public BookingsController(CineplexDatabaseContext context)
         {
             _context = context;    
@@ -185,30 +183,7 @@ namespace CineplexCinemas.Controllers
             }
             return View();
         }
-
-        [HttpPost]
-        public IActionResult confirmationToCart(Booking booking)
-        {
-            var cartList = HttpContext.Session.GetSession<cartItem>("cartItem");
-            if (cartList == null)
-            {
-                cartList = new List<cartItem>();
-            }
-            itemCounter++;
-            cartItem item = new cartItem();
-            item.cartId = itemCounter;
-            item.cineplxId = booking.cineplxId;
-            item.movieId = booking.movieId;
-            item.sessionId = booking.sessionId;
-            item.customerName = booking.customerName;
-            item.numberOfAdults = booking.numberOfAdults;
-            item.numberOfConc = booking.numberOfConc;
-            cartList.Add(item);
-            HttpContext.Session.SetSession("cartItem", cartList);
-            
-            return RedirectToAction("Index", "Cart");
-        }
-
+        
         public async Task<IActionResult> finaliseBookings()
         {
             var cartList = HttpContext.Session.GetSession<cartItem>("cartItem");

@@ -104,9 +104,12 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script>
+            var itemsAddedToCart = 0;
+
             function moviePopup() {
                 document.getElementById('seatsLeft').hidden = false;
             }
+
             function changeNumber() {
                 var ticketOptionAdult = document.getElementById('numberOfAdults');
                 var ticketOptionConc = document.getElementById('numberOfConc');
@@ -114,20 +117,32 @@
                 var numberAdults = parseInt(ticketOptionAdult.options[ticketOptionAdult.selectedIndex].value);
                 var numberConc = parseInt(ticketOptionConc.options[ticketOptionConc.selectedIndex].value);
                 var totalNumberTickets = parseInt(numberAdults + numberConc);
+                var totalItemsInCart = document.getElementById('cartId');
 
-                if (totalNumberTickets <= 5)
+                if (totalNumberTickets <= 5 || itemsAddedToCart <= 4)
                 {
                     var totalAdult = numberAdults * 45;
                     var totalConc = numberConc * 20;
 
                     document.getElementById('total').innerHTML = "Total Price: Adults: $" + totalAdult + ".00, Concession's: $" + totalConc + ".00";
+                    document.getElementById('addToCart').disabled = false;
 
                 }
                 else
                 {
                     document.getElementById('total').innerHTML = "You cannot purchase more than 5 tickets per session!";
+                    document.getElementById('addToCart').disabled = true;
                 }
                 
+            }
+
+            function updateItemsAdded() {
+                itemsAddedToCart++;
+            }
+
+            function updateItemsRemoved() {
+                --itemsAddedToCart;
+                document.getElementById('cartTotal').innerHTML = "(Removed) items left " + itemsAddedToCart;
             }
         </script>
     </environment>
