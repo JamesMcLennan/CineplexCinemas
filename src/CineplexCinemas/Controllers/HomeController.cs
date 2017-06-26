@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using CineplexCinemas.Models;
 
 namespace CineplexCinemas.Controllers
 {
@@ -13,16 +15,23 @@ namespace CineplexCinemas.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Cinemas()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Your Cinemas page.";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Events()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Private Hire";
+
+            return View();
+        }
+
+        public IActionResult Movies()
+        {
+            ViewData["Message"] = "Your Movies page.";
 
             return View();
         }

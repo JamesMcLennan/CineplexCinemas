@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using CineplexCinemas.Data;
 using CineplexCinemas.Models;
 using CineplexCinemas.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CineplexCinemas
 {
@@ -52,14 +53,25 @@ namespace CineplexCinemas
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.SslPort = 44352;
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.CookieHttpOnly = true;
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            services.AddDbContext<CineplexCinemasContext>(options =>
-                    options.UseSqlServer(Configuration["Data:CineplexCinemasContext:ConnectionString"]));
+            //Add
+            services.AddDbContext<Models.CineplexDatabaseContext>(options => options.UseSqlServer(Configuration["Data:CineplexDatabaseContext:ConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,13 +99,24 @@ namespace CineplexCinemas
 
             app.UseIdentity();
 
+            app.UseSession();
+
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
+            app.UseGoogleAuthentication(new GoogleOptions()
+            {
+                ClientId = Configuration["Authentication:Google:ClientId"],
+                ClientSecret = Configuration["Authentication:Google:ClientSecret"]
+            });
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "Session",
+                    template: "{controller=CineplexMoviesController}/{action=_SessionTimesPartial}/{cinemaName?}");
             });
         }
     }
